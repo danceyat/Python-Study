@@ -1,0 +1,30 @@
+{
+	"always_show_minimap_viewport": true,
+	"color_scheme": "Packages/User/SublimeLinter/Solarized (Light) (SL).tmTheme",
+	"font_face": "Courier 10 Pitch",
+	"font_options":
+	[
+		"gdi",
+		"directwrite"
+	],
+	"font_size": 12,
+	"gutter": true,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"line_numbers": true,
+	"match_brackets": true,
+	"match_brackets_angle": false,
+	"match_brackets_braces": true,
+	"match_brackets_content": true,
+	"match_brackets_square": true,
+	"match_selection": true,
+	"match_tags": true,
+	"show_encoding": true,
+	"show_line_endings": true,
+	"tab_size": 4,
+	"word_wrap": "auto"
+}
