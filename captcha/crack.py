@@ -3,10 +3,7 @@ from PIL import Image
 
 def magnitude(vector):
     # vector is a dict object consisting of values on each axis
-    total = 0
-    for value in vector.values():
-        total += value ** 2
-    return math.sqrt(total)
+    return math.sqrt(sum(val ** 2 for val in vector.values()))
 
 
 def angle(vector1, vector2):
@@ -95,25 +92,43 @@ def guessCode(image, templets):
         guess = []
         for tmp in templets:
             guess.append((tmp[0], angle(buildVector(img), tmp[1])))
+        """
+        count = 0
+        print(slices[0], slices[1])
+        for r in sorted(guess, key=lambda x: x[1], reverse=True):
+            print("   ", r)
+            count += 1
+            if count == 10:
+                break
+        """
         results.append(max(guess, key=lambda x: x[1]))
     return results
 
 
 templets = loadTemplets()
+
+"""
 # check 'res/captcha.gif'
 print("code for 'res/captcha.gif': ", end="")
 print("".join(r[0] for r in guessCode(Image.open("res/captcha.gif"), templets)))
+"""
+
 # check all examples
 allCodes, matchCodes = 0, 0
 for name in os.listdir('res/examples/'):
     ans = os.path.splitext(name)[0]
     guess = guessCode(Image.open("res/examples/%s" % (name)), templets)
-    print("guessing code for '%s' got '%s'" % (
-            name, "".join(r[0] for r in guess)), end="")
-    if ans == guess:
+    guessStr = "".join(r[0] for r in guess)
+    print("guessing code for '%s' got '%s'" % (name, guessStr), end="")
+    if ans == guessStr:
         print("Match")
         matchCodes += 1
     else:
         print("Not match")
     allCodes += 1
 print("Matched %d in %d" % (matchCodes, allCodes))
+
+"""
+for r in guessCode(Image.open("res/examples/e80qy3.gif"), templets):
+    print(r)
+"""
