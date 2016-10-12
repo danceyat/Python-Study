@@ -13,93 +13,6 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 DEBUG = False
 CITY_FILE = os.path.dirname(os.path.abspath(__file__)) + "/city_code.json"
 
-
-class City:
-    def __init__(self, code, cn, pinyin="", abbr="", abbr2=""):
-        self.code = code
-        self.cn = cn
-        self.pinyin = pinyin
-        self.abbr = abbr
-        self.abbr2 = abbr2
-
-
-    # it's a workaround, use this to identify different cities...
-    def __hash__(self):
-        return self.code.__hash__()
-
-
-    def __str__(self):
-        return "%s %s %s %s %s" % (self.code,
-            self.cn, self.pinyin, self.abbr, self.abbr2)
-
-
-class Train:
-    def __init__(self, name, startCity, stopCity,
-        fromCity, toCity, depTime, arrTime, timeCost):
-        self.name = name
-        self.startCity = startCity
-        self.stopCity = stopCity
-        self.fromCity = fromCity
-        self.toCity = toCity
-        self.depTime = depTime
-        self.arrTime = arrTime
-        self.timeCost = timeCost
-        # ticket count followed by price
-        self.swz = (0, 0)
-        self.tdz = (0, 0)
-        self.ydz = (0, 0)
-        self.edz = (0, 0)
-        self.rz = (0, 0)
-        self.yz = (0, 0)
-        self.wz = (0, 0)
-        self.gjrw = (0, 0)
-        self.rw = (0, 0)
-        self.yw = (0, 0)
-        self.qt = (0, 0)
-
-
-    def fromTrainInfo(info):
-        train = Train(info["station_train_code"],
-            City(info["start_station_telecode"], info["start_station_name"]),
-            City(info["end_station_telecode"], info["end_station_name"]),
-            City(info["from_station_telecode"], info["from_station_name"]),
-            City(info["to_station_telecode"], info["to_station_name"]),
-            info["start_time"],
-            info["arrive_time"],
-            info["lishi"])
-        # TODO add ticket price
-        """
-        yp_ex = info["yp_ex"]
-        yp_info = info["yp_info"]
-        """
-        train.swz = (info["swz_num"], 0)
-        train.tdz = (info["tz_num"], 0)
-        train.ydz = (info["zy_num"], 0)
-        train.edz = (info["ze_num"], 0)
-        train.rz = (info["rz_num"], 0)
-        train.yz = (info["yz_num"], 0)
-        train.wz = (info["wz_num"], 0)
-        train.gjrw = (info["gr_num"], 0)
-        train.rw = (info["rw_num"], 0)
-        train.yw = (info["yw_num"], 0)
-        train.qt = (info["qt_num"], 0)
-        train.add1 = info["controlled_train_message"]
-
-        return train
-
-    def getRow(self, headers):
-        row = [
-            self.name,
-            self.startCity.cn + " - " + self.stopCity.cn,
-            self.depTime + " - " + self.arrTime,
-            self.timeCost
-        ]
-        for header in headers:
-            row.append(eval("self.%s[0]" % (header)))
-
-        return row
-
-
 def validateDate(s):
     try:
         time.strptime(s, "%Y-%m-%d")
@@ -275,8 +188,7 @@ def queryTickets(depart, arrive, date):
         return trains
     if r.json() == -1 or not r.json()['data']['flag']:
         return trains
-    for trainInfo in r.json()["data"]["datas"]:
-        trains.append(Train.fromTrainInfo(trainInfo))
+    trains = r.json()['data']['datas']
 
     if DEBUG:
         print("DEBUG: %d trains parsed" % (len(trains)))
@@ -284,67 +196,63 @@ def queryTickets(depart, arrive, date):
 
 
 def showTickets(trains):
-    headers = set()
-    HEADERS = {
-        "swz": (1, "swz"),
-        "tdz": (2, "tdz"),
-        "ydz": (3, "ydz"),
-        "edz": (4, "edz"),
-        "rz": (8, "rz"),
-        "yz": (9, "yz"),
-        "wz": (10, "wz"),
-        "gjrw": (5, "gjrw"),
-        "rw": (6, "rw"),
-        "yw": (7, "yw"),
-        "qt": (11, "qt"),
-    }
-    PRE_HEADERS = [
-        "train",
-        "depart/arrive",
-        "time",
-        "time cost"
+    class Column:
+        def __init__(self, displayName, valueName, order):
+            self.displayName = displayName
+            self.valueName = valueName
+            self.order = order
+
+        def __hash__(self):
+            return self.order.__hash__()
+
+        def __repr__(self):
+            return self.displayName
+
+    headers = []
+    TICKET_COLUMNS = [
+        Column('swz', 'swz_num', 1),
+        Column('tdz', 'tz_num', 2),
+        Column('ydz', 'zy_num', 3),
+        Column('edz', 'ze_num', 4),
+        Column('gjrw', 'gr_num', 5),
+        Column('rw', 'rw_num', 6),
+        Column('yw', 'yw_num', 7),
+        Column('rz', 'rz_num', 8),
+        Column('yz', 'yz_num', 9),
+        Column('wz', 'wz_num', 10),
+        Column('qt', 'qt_num', 11)
     ]
-    for train in trains:
-        if train.swz[0].isnumeric():
-            headers.add(HEADERS["swz"][1])
-        if train.tdz[0].isnumeric():
-            headers.add(HEADERS["tdz"][1])
-        if train.ydz[0].isnumeric():
-            headers.add(HEADERS["ydz"][1])
-        if train.edz[0].isnumeric():
-            headers.add(HEADERS["edz"][1])
-        if train.rz[0].isnumeric():
-            headers.add(HEADERS["rz"][1])
-        if train.yz[0].isnumeric():
-            headers.add(HEADERS["yz"][1])
-        if train.wz[0].isnumeric():
-            headers.add(HEADERS["wz"][1])
-        if train.gjrw[0].isnumeric():
-            headers.add(HEADERS["gjrw"][1])
-        if train.rw[0].isnumeric():
-            headers.add(HEADERS["rw"][1])
-        if train.yw[0].isnumeric():
-            headers.add(HEADERS["yw"][1])
-        if train.qt[0].isnumeric():
-            headers.add(HEADERS["qt"][1])
-    sortedHeaders = sorted(list(headers), key=lambda x: HEADERS[x][0])
-    PRE_HEADERS.extend(sortedHeaders)
+    PRE_HEADERS = [
+        "Train",
+        "From - To",
+        "Depart - Arrive",
+        "Time Cost"
+    ]
+    for col in TICKET_COLUMNS:
+        for train in trains:
+            if train[col.valueName].isnumeric():
+                headers.append(col)
+                break
+
+    PRE_HEADERS.extend(headers)
     pt = PrettyTable()
     pt._set_field_names(PRE_HEADERS)
-    headerNames = []
-    for displayName in sortedHeaders:
-        for name in HEADERS:
-            if HEADERS[name][1] == displayName:
-                headerNames.append(name)
-                break
     for train in trains:
-        pt.add_row(train.getRow(headerNames))
+        row = [
+            train['station_train_code'],
+            train['from_station_name'] + " - " + train['to_station_name'],
+            train['start_time'] + " - " + train['arrive_time'],
+            train['lishi']
+        ]
+        for col in headers:
+            row.append(train[col.valueName])
+        pt.add_row(row)
     print(pt)
 
 
 if __name__ == "__main__":
     parser = buildArgParser()
-    args = parser.parse_args(['shanghaihongqiao', 'hefeinan', '2016-10-13'])
+    args = parser.parse_args()
     if DEBUG:
         print("DEBUG: depart=%s, arrive=%s, date=%s"\
             % (args.depart, args.arrive, args.date))
