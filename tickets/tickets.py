@@ -149,10 +149,13 @@ def searchCityCode(codes, name):
         _addCity(filter(lambda x: x['abbr'].startswith(name), codes))
         _addCity(filter(lambda x: x['abbr2'].startswith(name), codes))
 
+    if len(matches) == 0:
+        print("No city found for '%s'" % (name))
     return list(matches.values())
 
 
 def chooseOne(cities, prompt):
+    depCity = None
     if len(cities) > 1:
         print(prompt)
         count = 1
@@ -169,7 +172,7 @@ def chooseOne(cities, prompt):
         except:
             print("Invalid input %s" % num)
             depCity = None
-    else:
+    elif len(cities) > 0:
         depCity = cities[0]
 
     return depCity
@@ -264,9 +267,9 @@ if __name__ == "__main__":
         "Which city will your depart from?")
     date = args.date
 
-    trains = queryTickets(depCity['code'], arrCity['code'], date)
-
-    if len(trains) > 0:
-        showTickets(trains)
-    else:
-        print("No tickets left")
+    if depCity is not None and arrCity is not None:
+        trains = queryTickets(depCity['code'], arrCity['code'], date)
+        if len(trains) > 0:
+            showTickets(trains)
+        else:
+            print("No tickets left")
