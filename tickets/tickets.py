@@ -210,23 +210,23 @@ def showTickets(trains):
 
     headers = []
     TICKET_COLUMNS = [
-        Column('swz', 'swz_num', 1),
-        Column('tdz', 'tz_num', 2),
-        Column('ydz', 'zy_num', 3),
-        Column('edz', 'ze_num', 4),
-        Column('gjrw', 'gr_num', 5),
-        Column('rw', 'rw_num', 6),
-        Column('yw', 'yw_num', 7),
-        Column('rz', 'rz_num', 8),
-        Column('yz', 'yz_num', 9),
-        Column('wz', 'wz_num', 10),
-        Column('qt', 'qt_num', 11)
+        Column('商务座', 'swz_num', 1),
+        Column('特等座', 'tz_num', 2),
+        Column('一等座', 'zy_num', 3),
+        Column('二等座', 'ze_num', 4),
+        Column('高级软卧', 'gr_num', 5),
+        Column('软卧', 'rw_num', 6),
+        Column('硬卧', 'yw_num', 7),
+        Column('软座', 'rz_num', 8),
+        Column('硬座', 'yz_num', 9),
+        Column('无座', 'wz_num', 10),
+        Column('其他', 'qt_num', 11)
     ]
     PRE_HEADERS = [
-        "Train",
-        "From - To",
-        "Depart - Arrive",
-        "Time Cost"
+        "列车",
+        "出发 - 到达",
+        "出发时间 - 到达时间",
+        "旅途用时"
     ]
     for col in TICKET_COLUMNS:
         for train in trains:
