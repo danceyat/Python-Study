@@ -9,3 +9,4 @@ for infile in sys.argv[1:]:
             Image.open(infile).save(outfile)
         except IOError:
             print("cannot convert", infile)
+

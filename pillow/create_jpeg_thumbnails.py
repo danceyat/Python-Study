@@ -12,3 +12,4 @@ for infile in sys.argv[1:]:
             im.save(outfile, "JPEG")
         except IOError:
             print("cannot create thumbnail for", infile)
+

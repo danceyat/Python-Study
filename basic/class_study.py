@@ -39,3 +39,4 @@ print(MyClass.staticMember2, c1.staticMember2, c2.staticMember2)
 # If an instance has attribute 'attr', then call obj.attr will get the value
 # of this instance. But if it has no attribute named 'attr', the call will
 # return class.attr if exists.
+

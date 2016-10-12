@@ -36,3 +36,4 @@ out = im.transpose(Image.ROTATE_90)
 """
 Refer to 'pil-handbook.pdf' for details.
 """
+

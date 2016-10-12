@@ -56,3 +56,4 @@ if __name__ == "__main__":
     serverAddr = ('', 8080)
     server = HTTPServer(serverAddr, MyHandler)
     server.serve_forever()
+

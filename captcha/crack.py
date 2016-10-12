@@ -132,3 +132,4 @@ print("Matched %d in %d" % (matchCodes, allCodes))
 for r in guessCode(Image.open("res/examples/e80qy3.gif"), templets):
     print(r)
 """
+

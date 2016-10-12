@@ -210,7 +210,7 @@ def loadCityCode():
 
     if len(cityCodes) == 0 or len(version) == 0:
         cityCodes, version = downloadCityCode()
-    
+
     return cityCodes, version
 
 
@@ -333,7 +333,6 @@ def showTickets(trains):
 
 if __name__ == "__main__":
     parser = buildArgParser()
-    # args = parser.parse_args(["nanjingnan", "hankou", "2016-10-12"])
     args = parser.parse_args()
     if DEBUG:
         print("DEBUG: depart=%s, arrive=%s, date=%s"\
@@ -345,6 +344,7 @@ if __name__ == "__main__":
     arrCity = chooseOne(searchCityCode(cityCodes, args.arrive),
         "Which city is your departure?")
     date = args.date
-    
+
     trains = queryTickets(depCity.code, arrCity.code, date)
     showTickets(trains)
+
