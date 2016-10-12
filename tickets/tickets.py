@@ -4,12 +4,14 @@ import os
 import requests
 import shutil
 import time
+from functools import reduce
 from prettytable import PrettyTable
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 
-DEBUG = False
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+DEBUG = False
+CITY_FILE = os.path.dirname(os.path.abspath(__file__)) + "/city_code.json"
 
 
 class City:
@@ -129,24 +131,24 @@ def buildArgParser():
 
 
 def saveCityCode(cityCodes, version):
-    codeFile = os.path.dirname(os.path.abspath(__file__)) + "/city_code.txt"
     try:
-        if os.path.isfile(codeFile):
-            os.remove(codeFile)
-        elif os.path.exists(codeFile):
-            shutil.rmtree(codeFile)
+        if os.path.isfile(CITY_FILE):
+            os.remove(CITY_FILE)
+        elif os.path.exists(CITY_FILE):
+            shutil.rmtree(CITY_FILE)
     except:
         pass
 
     try:
-        with open(codeFile, 'w') as f:
-            f.write("version=%s\n" % (version))
-            for item in cityCodes:
-                f.write("%s|%s|%s|%s|%s\n"\
-                    % (item.abbr, item.cn, item.code, item.pinyin, item.abbr2))
+        content = {
+            'version': version,
+            'cities': cityCodes
+        }
+        with open(CITY_FILE, 'w') as f:
+            json.dump(content, f, indent=4)
             if DEBUG:
                 print("DEBUG: %d city codes saved to '%s', version: %s"\
-                    % (len(cityCodes), codeFile, version))
+                    % (len(cityCodes), CITY_FILE, version))
     except:
         print("Error saving city code file")
 
@@ -154,17 +156,18 @@ def saveCityCode(cityCodes, version):
 def downloadCityCode(version = ""):
     cityCodes = []
 
-    url = "https://kyfw.12306.cn/otn/lcxxcx/init"
-    versionKey = "station_version="
-    r = requests.get(url, verify=False)
-    if r.status_code != requests.codes.ok:
-        print("Error downloading city code info version")
-        return [], ""
-    start = r.text.find(versionKey) + len(versionKey)
-    stop = r.text.find('"', start)
-    newVersion = r.text[start:stop]
-    if DEBUG:
-        print("DEBUG: fetched city code version: %s" % newVersion)
+    if len(version) == 0:
+        url = "https://kyfw.12306.cn/otn/lcxxcx/init"
+        versionKey = "station_version="
+        r = requests.get(url, verify=False)
+        if r.status_code != requests.codes.ok:
+            print("Error downloading city code info version")
+            return [], ""
+        start = r.text.find(versionKey) + len(versionKey)
+        stop = r.text.find('"', start)
+        newVersion = r.text[start:stop]
+        if DEBUG:
+            print("DEBUG: fetched city code version: %s" % newVersion)
 
     if newVersion > version:
         url = "https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=%s" % (newVersion)
@@ -177,36 +180,38 @@ def downloadCityCode(version = ""):
         # start+1 to ignore first '@'
         for phrase in r.text[start+1:stop].split("@"):
             spl = phrase.split("|")
-            cityCodes.append(City(spl[2], spl[1], spl[3], spl[0], spl[4]))
+            cityCodes.append({
+                'code': spl[2],
+                'cn': spl[1],
+                'pinyin': spl[3],
+                'abbr': spl[0],
+                'abbr2': spl[4]
+            })
         print("Update city code version from '%s' to '%s'"\
             % (version, newVersion))
         version = newVersion
 
-    if len(version) > 0:
-        saveCityCode(cityCodes, version)
+        if len(version) > 0:
+            saveCityCode(cityCodes, version)
 
     return cityCodes, version
 
 
 def loadCityCode():
-    cityCodes = []
-    version = ""
-    codeFile = os.path.dirname(os.path.abspath(__file__)) + "/city_code.txt"
-    if os.path.isfile(codeFile):
+    cityCodes, version = [], ""
+    if os.path.isfile(CITY_FILE):
         try:
-            with open(codeFile, 'r') as f:
-                versionLine = f.readline()
-                version = versionLine[versionLine.find("=")+1:-1]
-                for line in f:
-                    spl = line[:-1].split("|")
-                    cityCodes.append(City(spl[2],
-                        spl[1], spl[3], spl[0], spl[4]))
+            with open(CITY_FILE, 'r') as f:
+                content = json.load(f)
+                cityCodes, version = content['cities'], content['version']
                 if DEBUG:
                     print("DEBUG: loaded %d city codes from '%s', version: %s"\
-                        % (len(cityCodes), codeFile, version))
+                        % (len(cityCodes), CITY_FILE, version))
+        except json.JSONDecodeError as msg:
+            print("Error parsing city code file: " + str(msg))
         except:
             print("Error reading city code file")
-            cityCodes.clear()
+            cityCodes, version = [], ""
 
     if len(cityCodes) == 0 or len(version) == 0:
         cityCodes, version = downloadCityCode()
@@ -215,17 +220,23 @@ def loadCityCode():
 
 
 def searchCityCode(codes, name):
-    matches = []
+    matches = {}
+
+    def _addCity(it):
+        for city in it:
+            if city['code'] not in matches:
+                matches[city['code']] = city
+
     if ord(name[0]) > 255:
         # this is probably a Chinese character
-        matches.extend(filter(lambda x: x.cn.startswith(name), codes))
+        _addCity(filter(lambda x: x['cn'].startswith(name), codes))
     elif len(name) > 1:
         # at lease 2 chars shall we start searching
-        matches.extend(filter(lambda x: x.pinyin.startswith(name), codes))
-        matches.extend(filter(lambda x: x.abbr.startswith(name), codes))
-        matches.extend(filter(lambda x: x.abbr2.startswith(name), codes))
+        _addCity(filter(lambda x: x['pinyin'].startswith(name), codes))
+        _addCity(filter(lambda x: x['abbr'].startswith(name), codes))
+        _addCity(filter(lambda x: x['abbr2'].startswith(name), codes))
 
-    return list(set(matches))
+    return list(matches.values())
 
 
 def chooseOne(cities, prompt):
@@ -233,7 +244,7 @@ def chooseOne(cities, prompt):
         print(prompt)
         count = 1
         for city in cities:
-            print("%d. %s" % (count, city.cn))
+            print("%d. %s" % (count, city['cn']))
             count += 1
         print(">>> ", end="")
         num = input()
@@ -262,7 +273,7 @@ def queryTickets(depart, arrive, date):
     if r.status_code != requests.codes.ok:
         print("Error downloading ticket info")
         return trains
-    if r.json() == -1:
+    if r.json() == -1 or not r.json()['data']['flag']:
         return trains
     for trainInfo in r.json()["data"]["datas"]:
         trains.append(Train.fromTrainInfo(trainInfo))
@@ -333,18 +344,21 @@ def showTickets(trains):
 
 if __name__ == "__main__":
     parser = buildArgParser()
-    args = parser.parse_args()
+    args = parser.parse_args(['shanghaihongqiao', 'hefeinan', '2016-10-13'])
     if DEBUG:
         print("DEBUG: depart=%s, arrive=%s, date=%s"\
             % (args.depart, args.arrive, args.date))
 
     cityCodes, version = loadCityCode()
     depCity = chooseOne(searchCityCode(cityCodes, args.depart),
-        "Which city is your destination?")
+        "Which city will your arrive at?")
     arrCity = chooseOne(searchCityCode(cityCodes, args.arrive),
-        "Which city is your departure?")
+        "Which city will your depart from?")
     date = args.date
 
-    trains = queryTickets(depCity.code, arrCity.code, date)
-    showTickets(trains)
+    trains = queryTickets(depCity['code'], arrCity['code'], date)
 
+    if len(trains) > 0:
+        showTickets(trains)
+    else:
+        print("No tickets left")
