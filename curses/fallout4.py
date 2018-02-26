@@ -1,7 +1,9 @@
 import curses
 
 class Pipboy:
-    MENU_LINES = 3
+    menuLineCount = 3
+    menuKeyIntraSeparator = ") "
+    menuKeyInterSeparator = "    "
 
     def __init__(self, scr):
         self.stdscr = scr
@@ -20,7 +22,7 @@ class Pipboy:
 
         # create sub window and show background
         self.stdscr.bkgdset(' ', curses.color_pair(1))
-        self.scr = self.stdscr.subwin(self.h0 - self.MENU_LINES, self.w0, 0, 0)
+        self.scr = self.stdscr.subwin(self.h0 - self.menuLineCount - 2, self.w0 - 4, 1, 2)
         self.showBackground()
 
     def start(self):
@@ -32,28 +34,18 @@ class Pipboy:
         self.showMenu()
 
     def showMenu(self):
-        menuKey = [ ( "WASD", "Navigate" ), ( "E", "Select" ), ( "Tab", "Cancel" ) ]
+        menuKey = [ ( "WASD", "Navigate" ), ( "E", "OK" ), ( "Tab", "Cancel" ) ]
         menuKeyLength = 0
         for ( k, v ) in menuKey:
-            # add 1 blank for ' ', 2 blanks for '[' and ']'
-            menuKeyLength += len(k) + len(v) + 1 + 2
-        # add 3 blanks between every tuple
-        menuKeyLength += (len(menuKey) - 1) * 3
+            menuKeyLength += len(k) + len(self.menuKeyIntraSeparator) + len(v)
+        menuKeyLength += (len(menuKey) - 1) * len(self.menuKeyInterSeparator)
         # TODO: make sure terminal width is bigger than menuKeyLength
         x = int((self.w0 - menuKeyLength) / 2)
-        y = self.h0 - self.MENU_LINES
+        y = self.h0 - self.menuLineCount
         #self.stdscr.addstr(y, x, menu1)
         for ( k, v ) in menuKey:
-            self.stdscr.addch(y, x, '[')
-            x += 1
-            self.stdscr.addstr(y, x, k, curses.A_BOLD)
-            x += len(k)
-            self.stdscr.addstr(y, x, "] ")
-            x += 2
-            self.stdscr.addstr(y, x, v)
-            x += len(v)
-            self.stdscr.addstr(y, x, "   ")
-            x += 3
+            self.stdscr.addstr(y, x, k + self.menuKeyIntraSeparator + v + self.menuKeyInterSeparator, curses.A_BOLD)
+            x += len(k) + len(self.menuKeyIntraSeparator) + len(v) + len(self.menuKeyInterSeparator)
 
     def showDebugInfo(self, s):
         self.stdscr.addstr(self.h0 - 1, 0, s, curses.color_pair(2))
