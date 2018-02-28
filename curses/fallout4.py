@@ -1,4 +1,6 @@
 import curses
+import json
+import os
 import time
 
 class Pipboy:
@@ -48,8 +50,10 @@ class Pipboy:
     """
 
     def __init__(self, scr):
-        self.stdscr = scr
         self.init = False
+        # TODO: turn off debug
+        self.debug = True
+        self.stdscr = scr
 
         # show error message and exit if terminal's too small
         self.h0, self.w0 = self.stdscr.getmaxyx()
@@ -73,6 +77,7 @@ class Pipboy:
         self.h2, self.w2 = self.scr.getmaxyx()
         #self.scr.border()
 
+        self.dataFileName = "fallout4consumable.json"
         self.init = True
 
     def start(self):
@@ -82,7 +87,8 @@ class Pipboy:
         while (handlePage):
             handlePage = handlePage()
 
-        self.storeData()
+        if self.holotapeLoaded:
+            self.storeData()
 
     def handleLoadingPage(self):
         handler = None
@@ -104,6 +110,7 @@ class Pipboy:
                     self.scr.addstr(self.h2 - 1, 0, " > Loading...", curses.A_BOLD)
                     self.scr.refresh()
                     self.loadData()
+                    self.holotapeLoaded = True
                 handler = self.handleMenuPage
                 break
             elif c == 9:
@@ -115,10 +122,24 @@ class Pipboy:
         return handler
 
     def loadData(self):
-        pass
+        self.parseError = False
+        try:
+            with open(self.dataFileName, 'r') as json_data:
+                self.data = json.load(json_data)
+        except FileNotFoundError:
+            self.showDebugInfo("File not found.")
+            self.data = []
+        except json.JSONDecodeError:
+            self.parseError = True
+            self.showDebugInfo("JSON decode error.")
+            self.data = []
 
     def storeData(self):
-        pass
+        if self.parseError:
+            os.rename(self.dataFileName, self.dataFileName + ".bak")
+
+        with open(self.dataFileName, 'w') as dataFile:
+            json.dump(self.data, dataFile, indent = 4)
 
     def handleMenuPage(self):
         handler = None
@@ -168,7 +189,7 @@ class Pipboy:
                 self.scr.addstr(y0 + i, 0, selections[i][0])
 
     def fancyShowText(self, s, y0, x0):
-        # TODO: does python check input parameters?
+        # TODO: check input parameters?
         i = 0
         x, y = x0, y0
         self.stdscr.nodelay(1)
@@ -211,6 +232,41 @@ class Pipboy:
 
     def handleBrowsePage(self):
         handler = None
+
+        # show page
+        self.scr.clear()
+        y = self.fancyShowText("Fallout 4 Consumable Browser", 0, 0)
+        y = self.fancyShowText("Browse and edit wasteland consumables. You can even add your own items here!", y, 0)
+        y = y + 1
+        selections = [
+                ( "Browse Consumables", self.handleBrowsePage),
+                ( "Edit New Consumable", self.handleNewPage),
+                ( "[ Make A Query! ]", self.handleQueryPage)]
+        select = 0
+        self.menuPageShowMenu(selections, select, y)
+        self.scr.refresh()
+
+        # handle key
+        while (1):
+            c = self.stdscr.getch()
+            if c == 69 or c == 101:
+                handler = selections[select][1]
+                break
+            elif c == 9:
+                handler = self.handleLoadingPage
+                break
+            elif c == 87 or c == 119:
+                if select > 0:
+                    select = select - 1
+                    self.menuPageShowMenu(selections, select, y)
+                    self.scr.refresh()
+            elif c == 83 or c == 115:
+                if select < len(selections) - 1:
+                    select = select + 1
+                    self.menuPageShowMenu(selections, select, y)
+                    self.scr.refresh()
+            else:
+                pass
 
         return handler
 
@@ -274,7 +330,9 @@ class Pipboy:
         self.stdscr.addstr(y + self.titleLineCount - 1, self.marginLeft + 1 + self.paddingLeft, "-" * length, curses.A_BOLD)
 
     def showDebugInfo(self, s):
-        self.stdscr.addstr(self.h0 - 1, 0, s, curses.color_pair(2))
+        if self.debug:
+            self.stdscr.addstr(self.h0 - 1, 0, ' ' * (self.w0 - 1), curses.color_pair(2))
+            self.stdscr.addstr(self.h0 - 1, 0, s, curses.color_pair(2))
 
 def resizeToStandard(stdscr):
     print("\x1b[8;24;80t")
