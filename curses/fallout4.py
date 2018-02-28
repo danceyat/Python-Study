@@ -1,4 +1,5 @@
 import curses
+import time
 
 class Pipboy:
     menuLineCount = 3
@@ -48,6 +49,7 @@ class Pipboy:
 
     def __init__(self, scr):
         self.stdscr = scr
+        self.init = False
 
         # show error message and exit if terminal's too small
         self.h0, self.w0 = self.stdscr.getmaxyx()
@@ -59,6 +61,7 @@ class Pipboy:
                 return
             self.stdscr.addstr(int((self.h0 - 1) / 2), int((self.w0 - len(err1)) / 2), err1)
             self.stdscr.addstr(int((self.h0 - 1) / 2) + 1, int((self.w0 - len(err2)) / 2), err2)
+            self.stdscr.getkey()
             return
 
         # create sub window and show background
@@ -70,32 +73,156 @@ class Pipboy:
         self.h2, self.w2 = self.scr.getmaxyx()
         #self.scr.border()
 
-    def start(self):
-        state = "initial"
-        selection = ""
-        holotapeLoaded = False
-        while (1):
-            # show content
-            if state == "initial":
-                self.scr.clear()
-                self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
-                if not holotapeLoaded:
-                    self.showSelected(0, 0, "[ Load Holotape ]")
-                else:
-                    self.showSelected(0, 0, "[ Holotape (Fallout4Consumables) ]")
-                self.scr.addstr(1, 0, "[ Save Holotape ]")
+        self.init = True
 
-            # handle input
+    def start(self):
+        self.holotapeLoaded = False
+
+        handlePage = self.handleLoadingPage
+        while (handlePage):
+            handlePage = handlePage()
+
+        self.storeData()
+
+    def handleLoadingPage(self):
+        handler = None
+
+        # show page
+        self.scr.clear()
+        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
+        if self.holotapeLoaded:
+            self.scr.addstr(0, 0, "[ Holotape(WASTELAND CONSUMABLE) ]", curses.A_REVERSE)
+        else:
+            self.scr.addstr(0, 0, "[ Load Holotape ]", curses.A_REVERSE)
+        self.scr.refresh()
+
+        # handle key
+        while (1):
             c = self.stdscr.getch()
             if c == 69 or c == 101:
-                pass
+                if not self.holotapeLoaded:
+                    self.scr.addstr(self.h2 - 1, 0, " > Loading...", curses.A_BOLD)
+                    self.scr.refresh()
+                    self.loadData()
+                handler = self.handleMenuPage
+                break
             elif c == 9:
+                handler = None
                 break
             else:
-                self.showDebugInfo(str(c))
+                pass
 
-    def showSelected(self, y, x, s):
-        self.scr.addstr(y, x, s + ' ' * (self.w2 - len(s)), curses.A_REVERSE)
+        return handler
+
+    def loadData(self):
+        pass
+
+    def storeData(self):
+        pass
+
+    def handleMenuPage(self):
+        handler = None
+
+        # show page
+        self.scr.clear()
+        y = self.fancyShowText("Fallout 4 Consumable Browser", 0, 0)
+        y = self.fancyShowText("Browse and edit wasteland consumables. You can even add your own items here!", y, 0)
+        y = y + 1
+        selections = [
+                ( "Browse Consumables", self.handleBrowsePage),
+                ( "Edit New Consumable", self.handleNewPage),
+                ( "[ Make A Query! ]", self.handleQueryPage)]
+        select = 0
+        self.menuPageShowMenu(selections, select, y)
+        self.scr.refresh()
+
+        # handle key
+        while (1):
+            c = self.stdscr.getch()
+            if c == 69 or c == 101:
+                handler = selections[select][1]
+                break
+            elif c == 9:
+                handler = self.handleLoadingPage
+                break
+            elif c == 87 or c == 119:
+                if select > 0:
+                    select = select - 1
+                    self.menuPageShowMenu(selections, select, y)
+                    self.scr.refresh()
+            elif c == 83 or c == 115:
+                if select < len(selections) - 1:
+                    select = select + 1
+                    self.menuPageShowMenu(selections, select, y)
+                    self.scr.refresh()
+            else:
+                pass
+
+        return handler
+
+    def menuPageShowMenu(self, selections, select, y0):
+        for i in range(len(selections)):
+            if i == select:
+                self.scr.addstr(y0 + i, 0, selections[i][0], curses.A_REVERSE)
+            else:
+                self.scr.addstr(y0 + i, 0, selections[i][0])
+
+    def fancyShowText(self, s, y0, x0):
+        # TODO: does python check input parameters?
+        i = 0
+        x, y = x0, y0
+        self.stdscr.nodelay(1)
+        while (1):
+            if not len(s) > i:
+                break
+
+            c = self.stdscr.getch()
+            if c != -1:
+                self.scr.addstr(y, x, s[i:])
+                l = len(s) - i
+                if l > self.w2 - x:
+                    l = l - (self.w2 - x)
+                    y = y + 1 + 1 + int(l / self.w2)
+                else:
+                    y = y + 1
+                # set x to 0 to get the right y
+                x = 0
+                # show all remaining text
+                break
+
+            self.scr.addch(y, x, s[i])
+            self.scr.refresh()
+            x = x + 1
+            if x >= self.w2:
+                x = 0
+                y = y + 1
+                if y >= self.h2:
+                    # no enough room for text
+                    break
+            i = i + 1
+            time.sleep(0.02)
+
+        self.stdscr.nodelay(0)
+        # return next empty line
+        if x == 0:
+            return y
+        else:
+            return y + 1
+
+    def handleBrowsePage(self):
+        handler = None
+
+        return handler
+
+    def handleNewPage(self):
+        handler = None
+
+        return handler
+
+    def handleQueryPage(self):
+        handler = None
+
+        return handler
 
     def showBackground(self):
         self.stdscr.clear()
@@ -136,7 +263,7 @@ class Pipboy:
             x += len(k) + len(self.menuKeyIntraSeparator) + len(v) + len(self.menuKeyInterSeparator)
 
     def showTitle(self):
-        title = "Wasteland Consumable Manual (Version 1.0.0)"
+        title = "RobCo Personal Information Processor (Version 1.0.0)"
         author = "Powered by Joseph"
         length = self.w0 - (self.marginLeft + 1 + self.paddingLeft) - (self.marginRight + 1 + self.paddingRight)
         x1 = self.marginLeft + 1 + self.paddingLeft + int((length - len(title)) / 2)
@@ -164,7 +291,8 @@ def main(stdscr):
     # start Pip-Boy
     pi = Pipboy(stdscr)
     # TODO: may add parameters here
-    pi.start()
+    if pi.init:
+        pi.start()
 
 if __name__ == "__main__":
     curses.wrapper(main)
