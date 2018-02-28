@@ -1,26 +1,26 @@
 [
     {
-        "name": "Angler meat",
-        "weight": 0.5,
-        "value": 20,
-        "baseid": "xx01c714",
-        "add-on": "Far Harbor",
         "available": "all",
-        "inst-effect": {
-            "HP": 35,
-            "rad": 10
-        },
+        "name": "Angler meat",
+        "baseid": "xx01c714",
         "cont-effect": [],
-        "compond-of": [
-            "Poached angler"
-        ],
+        "value": 20,
+        "add-on": "Far Harbor",
+        "weight": 0.5,
         "crafting": {
-            "produces": 1,
-            "XP": 6,
-            "requirements": "Cooking station",
             "materials": {
                 "Angler meat": 1
-            }
-        }
+            },
+            "XP": 6,
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "rad": 10,
+            "HP": 35
+        },
+        "compond-of": [
+            "Poached angler"
+        ]
     }
 ]

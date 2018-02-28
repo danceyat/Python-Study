@@ -146,6 +146,7 @@ class Pipboy:
 
         # show page
         self.scr.clear()
+        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
         y = self.fancyShowText("Fallout 4 Consumable Browser", 0, 0)
         y = self.fancyShowText("Browse and edit wasteland consumables. You can even add your own items here!", y, 0)
         y = y + 1
@@ -235,15 +236,14 @@ class Pipboy:
 
         # show page
         self.scr.clear()
-        y = self.fancyShowText("Fallout 4 Consumable Browser", 0, 0)
-        y = self.fancyShowText("Browse and edit wasteland consumables. You can even add your own items here!", y, 0)
-        y = y + 1
-        selections = [
-                ( "Browse Consumables", self.handleBrowsePage),
-                ( "Edit New Consumable", self.handleNewPage),
-                ( "[ Make A Query! ]", self.handleQueryPage)]
+        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
+        entries = []
+        for item in self.data:
+            entries.append(item["name"])
         select = 0
-        self.menuPageShowMenu(selections, select, y)
+        if len(entries) > select:
+            for i in range(min(len(entries) - select, self.h2 - 2)):
+                pass
         self.scr.refresh()
 
         # handle key
