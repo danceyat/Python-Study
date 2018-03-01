@@ -6,8 +6,8 @@
             "Poached angler"
         ],
         "inst-effect": {
-            "HP": 35,
-            "rad": 10
+            "Hit Points": 35,
+            "Radiation": 10
         },
         "name": "Angler meat",
         "type": "food",
@@ -21,8 +21,8 @@
             "Roasted ant"
         ],
         "inst-effect": {
-            "HP": 15,
-            "rad": 11
+            "Hit Points": 15,
+            "Radiation": 11
         },
         "name": "Ant meat",
         "type": "food",
@@ -37,8 +37,8 @@
             "Herbal stimulant"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 3
+            "Hit Points": 10,
+            "Radiation": 3
         },
         "name": "Ash blossom",
         "type": "food",
@@ -54,8 +54,8 @@
             "Vim Captain's Blend"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 2
+            "Hit Points": 10,
+            "Radiation": 2
         },
         "name": "Aster",
         "type": "food",
@@ -66,7 +66,7 @@
         "baseid": "0004a151",
         "cont-effect": [
             {
-                "RR": 20,
+                "Radiation Resistance": 20,
                 "second": 600
             }
         ],
@@ -79,7 +79,7 @@
             "requirements": "Cooking station"
         },
         "inst-effect": {
-            "HP": 40
+            "Hit Points": 40
         },
         "name": "Baked bloatfly",
         "type": "food",
@@ -95,8 +95,8 @@
             "Seasoned rabbit skewers"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 2
+            "Hit Points": 10,
+            "Radiation": 2
         },
         "name": "Black bloodleaf",
         "type": "food",
@@ -106,8 +106,8 @@
     {
         "baseid": "0002fbe4",
         "inst-effect": {
-            "HP": 20,
-            "rad": 6
+            "Hit Points": 20,
+            "Radiation": 6
         },
         "name": "Blamco Brand Mac and Cheese",
         "type": "food",
@@ -127,7 +127,7 @@
             "requirements": "Food processor"
         },
         "inst-effect": {
-            "HP": 40
+            "Hit Points": 40
         },
         "name": "Blamco Brand Mac and Cheese (pre-War)",
         "type": "food",
@@ -141,8 +141,8 @@
             "Seasoned rabbit skewers"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 2
+            "Hit Points": 10,
+            "Radiation": 2
         },
         "name": "Blight",
         "type": "food",
@@ -155,8 +155,8 @@
             "Baked bloatfly"
         ],
         "inst-effect": {
-            "HP": 5,
-            "rad": 6
+            "Hit Points": 5,
+            "Radiation": 6
         },
         "name": "Bloatfly meat",
         "type": "food",
@@ -170,8 +170,8 @@
             "Resilient sludge cocktail"
         ],
         "inst-effect": {
-            "HP": 45,
-            "rad": 9
+            "Hit Points": 45,
+            "Radiation": 9
         },
         "name": "Bloodbug meat",
         "type": "food",
@@ -182,7 +182,7 @@
         "baseid": "0004693f",
         "cont-effect": [
             {
-                "mHP": 15,
+                "Max Hit Points": 15,
                 "second": 3600
             }
         ],
@@ -195,7 +195,7 @@
             "requirements": "Cooking station"
         },
         "inst-effect": {
-            "HP": 105
+            "Hit Points": 105
         },
         "name": "Bloodbug steak",
         "type": "food",
@@ -210,8 +210,8 @@
             "Ultra jet"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 2
+            "Hit Points": 10,
+            "Radiation": 2
         },
         "name": "Bloodleaf",
         "type": "food",
@@ -225,8 +225,8 @@
             "Roasted bloodworm"
         ],
         "inst-effect": {
-            "HP": 25,
-            "rad": 7
+            "Hit Points": 25,
+            "Radiation": 7
         },
         "name": "Bloodworm meat",
         "type": "food",
@@ -238,11 +238,11 @@
         "compond-of": [
             "Ribeye steak",
             "Cram",
-            "Salisbury Steak"
+            "Salisbury Steak (pre-War)"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 8
+            "Hit Points": 10,
+            "Radiation": 8
         },
         "name": "Brahmin meat",
         "type": "food",
@@ -255,8 +255,8 @@
             "Mentats"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 3
+            "Hit Points": 10,
+            "Radiation": 3
         },
         "name": "Brain fungus",
         "type": "food",
@@ -269,8 +269,8 @@
             "Vim Quartz"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 1
+            "Hit Points": 10,
+            "Radiation": 1
         },
         "name": "Bubblegum",
         "type": "food",
@@ -280,8 +280,8 @@
     {
         "baseid": "000bea58",
         "inst-effect": {
-            "HP": 10,
-            "rad": 2
+            "Hit Points": 10,
+            "Radiation": 2
         },
         "name": "Canned dog food",
         "type": "food",
@@ -302,8 +302,8 @@
             "Blamco Brand Mac and Cheese (pre-War)"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 3
+            "Hit Points": 10,
+            "Radiation": 3
         },
         "name": "Carrot",
         "type": "food",
@@ -318,8 +318,8 @@
             "Nuka-Hearty"
         ],
         "inst-effect": {
-            "HP": 10,
-            "rad": 3
+            "Hit Points": 10,
+            "Radiation": 3
         },
         "name": "Carrot flower",
         "type": "food",
@@ -329,8 +329,8 @@
     {
         "baseid": "000939b8",
         "inst-effect": {
-            "HP": 15,
-            "rad": 8
+            "Hit Points": 15,
+            "Radiation": 8
         },
         "name": "Cat meat",
         "type": "food",
@@ -344,8 +344,8 @@
             "Predator grenade"
         ],
         "inst-effect": {
-            "HP": 15,
-            "rad": 11
+            "Hit Points": 15,
+            "Radiation": 11
         },
         "name": "Cave cricket gland",
         "type": "food",
@@ -359,8 +359,8 @@
             "Crispy cave cricket"
         ],
         "inst-effect": {
-            "HP": 15,
-            "rad": 11
+            "Hit Points": 15,
+            "Radiation": 11
         },
         "name": "Cave cricket meat",
         "type": "food",
@@ -369,10 +369,1211 @@
     },
     {
         "add-on": "Far Harbor",
+        "baseid": "xx05715b",
+        "cont-effect": [
+            {
+                "Radiation Resistance": 55,
+                "second": 1800
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Black bloodleaf": 1,
+                "Carrot": 1,
+                "Chicken thigh": 1,
+                "Dirty water": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 60
+        },
+        "name": "Chicken noodle soup",
+        "type": "food",
+        "value": 23,
+        "weight": 1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx056a4a",
+        "compond-of": [
+            "Chicken noodle soup"
+        ],
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 11
+        },
+        "name": "Chicken thigh",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00046942",
+        "cont-effect": [
+            {
+                "Max Action Points": 15,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 7,
+            "materials": {
+                "Softshell mirelurk meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 85
+        },
+        "name": "Cooked softshell meat",
+        "type": "food",
+        "value": 40,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000330f8",
+        "compond-of": [
+            "Vegetable starch",
+            "Vim",
+            "Salisbury Steak (pre-War)",
+            "Sugar Bombs (pre-War)"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Corn",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx02689a",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Cotton candy bites",
+        "type": "food",
+        "value": 7,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000330ee",
+        "crafting": {
+            "materials": {
+                "Brahmin meat": 1,
+                "Dog meat": 1,
+                "Radstag meat": 1,
+                "Steel": 1
+            },
+            "produces": 1,
+            "requirements": "Food processor"
+        },
+        "inst-effect": {
+            "Hit Points": 25,
+            "Radiation": 5
+        },
+        "name": "Cram",
+        "type": "food",
+        "value": 25,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04cbbd",
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "Cave cricket meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Energy Resistance": 20,
+            "Hit Points": 250
+        },
+        "name": "Crispy cave cricket",
+        "type": "food",
+        "value": 65,
+        "weight": 1
+    },
+    {
+        "baseid": "000330fa",
+        "crafting": {
+            "XP": 1,
+            "materials": {
+                "Squirrel bits": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 35
+        },
+        "name": "Crispy squirrel bits",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0002fbf7",
+        "compond-of": [
+            "Vim Refresh"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Dandy Boy Apples",
+        "type": "food",
+        "value": 7,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00046939",
+        "compond-of": [
+            "Deathclaw egg omelette",
+            "Deathclaw Wellingham"
+        ],
+        "inst-effect": {
+            "Hit Points": 45,
+            "Radiation": 7
+        },
+        "name": "Deathclaw egg",
+        "type": "food",
+        "value": 69,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0004693c",
+        "cont-effect": [
+            {
+                "effect": "small health regen",
+                "second": 7200
+            }
+        ],
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "Blood pack": 1,
+                "Deathclaw egg": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 115
+        },
+        "name": "Deathclaw egg omelette",
+        "type": "food",
+        "value": 80,
+        "weight": 0.1
+    },
+    {
+        "baseid": "00074d0e",
+        "compond-of": [
+            "Deathclaw steak"
+        ],
+        "inst-effect": {
+            "Hit Points": 90,
+            "Radiation": 6
+        },
+        "name": "Deathclaw meat",
+        "type": "food",
+        "value": 110,
+        "weight": 1
+    },
+    {
+        "baseid": "00101293",
+        "cont-effect": [
+            {
+                "AGI": 1,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "Deathclaw meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 185
+        },
+        "name": "Deathclaw steak",
+        "type": "food",
+        "value": 130,
+        "weight": 1
+    },
+    {
+        "baseid": "001a71e7",
+        "crafting": {
+            "materials": {
+                "Deathclaw egg": 1,
+                "Dirty water": 1,
+                "Tato": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 115
+        },
+        "name": "Deathclaw Wellingham",
+        "type": "food",
+        "value": 120,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001ee1ff",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 5
+        },
+        "name": "Experimental plant",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000330b4",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 4
+        },
+        "name": "Fancy Lads Snack Cakes",
+        "type": "food",
+        "value": 18,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000e3770",
+        "crafting": {
+            "materials": {
+                "Plastic": 1,
+                "Purified water": 1,
+                "Razorgrain": 1,
+                "Tarberry": 1
+            },
+            "produces": 1,
+            "requirements": "Food processor"
+        },
+        "inst-effect": {
+            "Hit Points": 25
+        },
+        "name": "Fancy Lads Snack Cakes (pre-War)",
+        "type": "food",
+        "value": 18,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx01cd24",
+        "compond-of": [
+            "Smooth Operator",
+            "Persuasion grenade",
+            "Predator grenade"
+        ],
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 1
+        },
+        "name": "Fever blossom",
+        "type": "food",
+        "value": 4,
+        "weight": 0.1
+    },
+    {
+        "baseid": "00047648",
+        "inst-effect": {
+            "END": 1,
+            "Hit Points": 50
+        },
+        "name": "Food paste",
+        "type": "food",
+        "value": 0,
+        "weight": 0.3
+    },
+    {
+        "baseid": "001994aa",
+        "inst-effect": {
+            "Hit Points": 20
+        },
+        "name": "Fresh carrot",
+        "type": "food",
+        "value": 36,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001994a9",
+        "inst-effect": {
+            "Hit Points": 20
+        },
+        "name": "Fresh corn",
+        "type": "food",
+        "value": 36,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001994ab",
+        "inst-effect": {
+            "Hit Points": 20
+        },
+        "name": "Fresh melon",
+        "type": "food",
+        "value": 36,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001847b6",
+        "inst-effect": {
+            "Hit Points": 20
+        },
+        "name": "Fresh mutfruit",
+        "type": "food",
+        "value": 8,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx048401",
+        "cont-effect": [
+            {
+                "effect": "damage resistance greatly increases in foggy and rainy weather conditions",
+                "second": 1800
+            }
+        ],
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "Oil": 1,
+                "Raw fog crawler meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 125
+        },
+        "name": "Fried fog crawler",
+        "type": "food",
+        "value": 120,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx02689b",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 4
+        },
+        "name": "Funnel cake",
+        "type": "food",
+        "value": 18,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04aa17",
+        "compond-of": [
+            "Gatorclaw steak"
+        ],
+        "inst-effect": {
+            "Hit Points": 100,
+            "Radiation": 6
+        },
+        "name": "Gatorclaw meat",
+        "type": "food",
+        "value": 110,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04aa1c",
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "Gatorclaw meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "AGI": 1,
+            "Hit Points": 195
+        },
+        "name": "Gatorclaw meat",
+        "type": "food",
+        "value": 130,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04b419",
+        "compond-of": [
+            "Gazelle steak"
+        ],
+        "inst-effect": {
+            "Hit Points": 60,
+            "Radiation": 10
+        },
+        "name": "Gazelle meat",
+        "type": "food",
+        "value": 60,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04cbb9",
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "Gazelle meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "CW": 25,
+            "Hit Points": 60
+        },
+        "name": "Gazelle steak",
+        "type": "food",
+        "value": 75,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx0518d3",
+        "inst-effect": {
+            "Hit Points": 60
+        },
+        "name": "Ghoulrilla meat",
+        "type": "food",
+        "value": 80,
+        "weight": 1
+    },
+    {
+        "baseid": "001c0fc3",
+        "compond-of": [
+            "Antibiotics",
+            "Herbal anodyne",
+            "Herbal antimicrobial",
+            "Herbal stimulant",
+            "RadAway"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Glowing fungus",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000ef24d",
+        "compond-of": [
+            "Radstag stew",
+            "Vim Refresh"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Gourd",
+        "type": "food",
+        "value": 6,
+        "weight": 1
+    },
+    {
+        "baseid": "001c4011",
+        "compond-of": [
+            "Herbal antimicrobial",
+            "Herbal stimulant"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Gourd blossom",
+        "type": "food",
+        "value": 6,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04aa1d",
+        "crafting": {
+            "materials": {
+                "Nukalurk meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Action Points": 12,
+            "Hit Points": 80
+        },
+        "name": "Grilled Nukalurk",
+        "type": "food",
+        "value": 40,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04aa24",
+        "cont-effect": [
+            {
+                "END": 3,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 4,
+            "materials": {
+                "Queen Nukalurk meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 220
+        },
+        "name": "Grilled queen Nukalurk",
+        "type": "food",
+        "value": 130,
+        "weight": 1
+    },
+    {
+        "baseid": "0019797d",
+        "crafting": {
+            "XP": 2,
+            "materials": {
+                "Radroach meat": 3
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 30
+        },
+        "name": "Grilled radroach",
+        "type": "food",
+        "value": 7,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx04ba12",
+        "cont-effect": [
+            {
+                "STR": 2,
+                "second": 1800
+            },
+            {
+                "END": 2,
+                "second": 1800
+            }
+        ],
+        "crafting": {
+            "XP": 4,
+            "materials": {
+                "Hermit crab meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 200
+        },
+        "name": "Grilled hermit crab",
+        "type": "food",
+        "value": 130,
+        "weight": 1
+    },
+    {
+        "baseid": "00046952",
+        "cont-effect": [
+            {
+                "CW": 25,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 12,
+            "materials": {
+                "Radstag": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 120
+        },
+        "name": "Grilled radstag",
+        "type": "food",
+        "value": 60,
+        "weight": 1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx04d2e7",
+        "compond-of": [
+            "Gulper slurry"
+        ],
+        "inst-effect": {
+            "Hit Points": 60,
+            "Radiation": 6
+        },
+        "name": "Gulper innards",
+        "type": "food",
+        "value": 20,
+        "weight": 1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx04d2e8",
+        "cont-effect": [
+            {
+                "effect": "invisibility",
+                "second": 10
+            }
+        ],
+        "name": "Gulper slurry",
+        "type": "food",
+        "value": 80,
+        "weight": 1
+    },
+    {
+        "baseid": "000330fc",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 1
+        },
+        "name": "Gum drops",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001d33d2",
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation": 4
+        },
+        "name": "Happy Birthday sweet roll",
+        "type": "food",
+        "value": 0,
+        "weight": 0
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx04ba11",
+        "compond-of": [
+            "Grilled hermit crab"
+        ],
+        "inst-effect": {
+            "END": 1,
+            "Hit Points": 100,
+            "Radiation": 25
+        },
+        "name": "Hermit crab meat",
+        "type": "food",
+        "value": 22,
+        "weight": 0.5
+    },
+    {
+        "baseid": "001c3fdc",
+        "compond-of": [
+            "Grape Mentats",
+            "Psycho"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Hubflower",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000330fd",
+        "compond-of": [
+            "Iguana on a stick",
+            "Iguana soup"
+        ],
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 5
+        },
+        "name": "Iguana bits",
+        "type": "food",
+        "value": 8,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000330fe",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Iguana bits": 1,
+                "Wood": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 40
+        },
+        "name": "Iguana on a stick",
+        "type": "food",
+        "value": 33,
+        "weight": 0.1
+    },
+    {
+        "baseid": "00102157",
+        "crafting": {
+            "XP": 8,
+            "materials": {
+                "Carrot": 1,
+                "Dirty water": 1,
+                "Iguana bits": 3
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 95
+        },
+        "name": "Iguana soup",
+        "type": "food",
+        "value": 21,
+        "weight": 1
+    },
+    {
+        "baseid": "000366b9",
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation": 7
+        },
+        "name": "InstaMash",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000e377a",
+        "inst-effect": {
+            "Hit Points": 45
+        },
+        "name": "InstaMash (preserved)",
+        "type": "food",
+        "value": 23,
+        "weight": 0.5
+    },
+    {
+        "baseid": "0021681e",
+        "inst-effect": {
+            "Hit Points": 25
+        },
+        "name": "Institute food packet",
+        "type": "food",
+        "value": 10,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx044043",
+        "compond-of": [
+            "Seasoned rabbit skewers",
+            "Wolf ribs"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Lure weed",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000fafeb",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Melon",
+        "type": "food",
+        "value": 6,
+        "weight": 1
+    },
+    {
+        "baseid": "001c4010",
+        "compond-of": [
+            "Herbal anodyne",
+            "Herbal stimulant"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Melon blossom",
+        "type": "food",
+        "value": 6,
+        "weight": 1
+    },
+    {
+        "baseid": "0004a152",
+        "cont-effect": [
+            {
+                "effect": "allows breathing underwater",
+                "second": 1800
+            }
+        ],
+        "crafting": {
+            "XP": 11,
+            "materials": {
+                "Mirelurk egg": 1,
+                "Mirelurk meat": 1,
+                "Oil": 1,
+                "Razorgrain": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 140
+        },
+        "name": "Mirelurk cake",
+        "type": "food",
+        "value": 35,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0023e9d4",
+        "compond-of": [
+            "Mirelurk cake",
+            "Mirelurk egg omelette",
+            "Slocum's Buzzbites",
+            "Yum Yum Deviled Eggs"
+        ],
+        "inst-effect": {
+            "Hit Points": 9,
+            "Radiation": 12
+        },
+        "name": "Mirelurk egg",
+        "type": "food",
+        "value": 0,
+        "weight": 1
+    },
+    {
+        "baseid": "0004693e",
+        "crafting": {
+            "materials": {
+                "Dirty water": 1,
+                "Mirelurk egg": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Action Points": 50,
+            "Hit Points": 45
+        },
+        "name": "Mirelurk egg omelette",
+        "type": "food",
+        "value": 30,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx032c2e",
+        "crafting": {
+            "materials": {
+                "Anti freeze bottle": 1,
+                "Mirelurk meat": 2,
+                "Tarberry": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 35,
+            "PER": 3,
+            "Poison Resistance": 15
+        },
+        "name": "Mirelurk jerky",
+        "type": "food",
+        "value": 100,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000330ff",
+        "compond-of": [
+            "Mirelurk cake",
+            "Roasted mirelurk meat",
+            "Vim Captain's Blend",
+            "Mirelurk jerky"
+        ],
+        "inst-effect": {
+            "Hit Points": 35,
+            "Radiation": 10
+        },
+        "name": "Mirelurk meat",
+        "type": "food",
+        "value": 18,
+        "weight": 0.5
+    },
+    {
+        "baseid": "0021c00c",
+        "cont-effect": [
+            {
+                "END": 2,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Queen mirelurk meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 200
+        },
+        "name": "Mirelurk queen steak",
+        "type": "food",
+        "value": 130,
+        "weight": 1
+    },
+    {
+        "baseid": "001a6397",
+        "inst-effect": {
+            "Hit Points": 5,
+            "Radiation": 6
+        },
+        "name": "Moldy food",
+        "type": "food",
+        "value": 1,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00046943",
+        "cont-effect": [
+            {
+                "Max Action Points": 5,
+                "second": 900
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Mole rat meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 50
+        },
+        "name": "Mole rat chunks",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00033101",
+        "compond-of": [
+            "Mole rat chunks",
+            "Pork n' Beans"
+        ],
+        "inst-effect": {
+            "Hit Points": 25,
+            "Radiation": 7
+        },
+        "name": "Mole rat meat",
+        "type": "food",
+        "value": 5,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000330fb",
+        "compond-of": [
+            "Mutt chops",
+            "Cram"
+        ],
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation": 8
+        },
+        "name": "Mongrel dog meat",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "baseid": "0021188e",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Mutant hound meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 60,
+            "Radiation": -50
+        },
+        "name": "Mutant hound chops",
+        "type": "food",
+        "value": 12,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00146156",
+        "compond-of": [
+            "Mutant hound chops"
+        ],
+        "inst-effect": {
+            "Hit Points": 30,
+            "Radiation": 8
+        },
+        "name": "Mutant hound meat",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000e34e9",
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 1
+        },
+        "name": "Mutated fern flower",
+        "type": "food",
+        "value": 4,
+        "weight": 0.1
+    },
+    {
+        "baseid": "00033102",
+        "compond-of": [
+            "Dirty Wastelander",
+            "Pax syringe",
+            "Tasty deathclaw omelette",
+            "Vegetable starch",
+            "Vim"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Mutfruit",
+        "type": "food",
+        "value": 8,
+        "weight": 0.1
+    },
+    {
+        "baseid": "00046940",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Mongrel dog meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 40
+        },
+        "name": "Mutt chops",
+        "type": "food",
+        "value": 12,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx042ca6",
+        "inst-effect": {
+            "Hit Points": 10
+        },
+        "name": "Mystery bacon",
+        "type": "food",
+        "value": 15,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx042ca1",
+        "inst-effect": {
+            "Hit Points": 10
+        },
+        "name": "Mystery jerky",
+        "type": "food",
+        "value": 15,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00017c73",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Dirty water": 1,
+                "Razorgrain": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 40
+        },
+        "name": "Noodle cup",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04aa1e",
+        "compond-of": [
+            "Grilled Nukalurk"
+        ],
+        "inst-effect": {
+            "Hit Points": 45,
+            "Radiation": 10
+        },
+        "name": "Nukalurk meat",
+        "type": "food",
+        "value": 18,
+        "weight": 0.5
+    },
+    {
+        "baseid": "001a6396",
+        "inst-effect": {
+            "Hit Points": 30
+        },
+        "name": "Perfectly preserved pie",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
         "baseid": "xx01c717",
         "cont-effect": [
             {
-                "mAP": 15,
+                "Max Action Points": 15,
                 "second": 1200
             },
             {
@@ -389,7 +1590,7 @@
             "requirements": "Cooking station"
         },
         "inst-effect": {
-            "HP": 100
+            "Hit Points": 100
         },
         "name": "Poached angler",
         "type": "food",
@@ -397,35 +1598,928 @@
         "weight": 0.5
     },
     {
-        "add-on": "",
-        "addition": "",
-        "available": "survival",
-        "baseid": "xx000000",
+        "baseid": "000330f0",
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation": 6
+        },
+        "name": "Pork n' Beans",
+        "type": "food",
+        "value": 10,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000330f1",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 7
+        },
+        "name": "Potato Crisps",
+        "type": "food",
+        "value": 7,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0016d8c8",
+        "inst-effect": {
+            "Hit Points": 40,
+            "Radiation": 12
+        },
+        "name": "Potted meat",
+        "type": "food",
+        "value": 25,
+        "weight": 1
+    },
+    {
+        "baseid": "00134c68",
         "compond-of": [
-            "item1",
-            "item2"
+            "Tasty deathclaw omelette"
         ],
+        "inst-effect": {
+            "Hit Points": 45,
+            "Radiation": 7
+        },
+        "name": "Pristine deathclaw egg",
+        "type": "food",
+        "value": 69,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0020d3de",
+        "compond-of": [
+            "Mirelurk queen steak"
+        ],
+        "inst-effect": {
+            "END": 1,
+            "Hit Points": 100,
+            "Radiation": 25
+        },
+        "name": "Queen mirelurk meat",
+        "type": "food",
+        "value": 22,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04aa23",
+        "compond-of": [
+            "Grilled queen Nukalurk"
+        ],
+        "inst-effect": {
+            "END": 2,
+            "Hit Points": 120,
+            "Radiation": 30
+        },
+        "name": "Queen Nukalurk meat",
+        "type": "food",
+        "value": 22,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx056a49",
+        "compond-of": [
+            "Seasoned rabbit skewers"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 8
+        },
+        "name": "Rabbit leg",
+        "type": "food",
+        "value": 7,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx0138f7",
+        "compond-of": [
+            "Rad-rat steak"
+        ],
+        "inst-effect": {
+            "Hit Points": 25,
+            "Radiation": 5
+        },
+        "name": "Rad-rat meat",
+        "type": "food",
+        "value": 5,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04c0e3",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Rad-rat meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Action Points": 5,
+            "Hit Points": 48
+        },
+        "name": "Rad-rat steak",
+        "type": "food",
+        "value": 8,
+        "weight": 1
+    },
+    {
+        "baseid": "00033106",
+        "compond-of": [
+            "Grilled radroach",
+            "Mole rat cage"
+        ],
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 11
+        },
+        "name": "Radroach meat",
+        "type": "food",
+        "value": 3,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0004693b",
+        "compond-of": [
+            "Radscorpion egg omelette"
+        ],
+        "inst-effect": {
+            "Hit Points": 35,
+            "Radiation": 11
+        },
+        "name": "Radscorpion egg",
+        "type": "food",
+        "value": 48,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0004693d",
+        "crafting": {
+            "XP": 14,
+            "materials": {
+                "Purified water": 1,
+                "Radscorpion egg": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 75,
+            "effect": "cure addictions"
+        },
+        "name": "Radscorpion egg omelette",
+        "type": "food",
+        "value": 65,
+        "weight": 0.1
+    },
+    {
+        "baseid": "00074d10",
+        "compond-of": [
+            "Radscorpion steak"
+        ],
+        "inst-effect": {
+            "Hit Points": 75,
+            "Radiation": 13
+        },
+        "name": "Radscorpion meat",
+        "type": "food",
+        "value": 55,
+        "weight": 1
+    },
+    {
+        "baseid": "00046950",
         "cont-effect": [
             {
-                "effect": "some effect",
+                "Energy Resistance": 25,
                 "second": 3600
             }
         ],
         "crafting": {
-            "XP": 10,
+            "XP": 13,
             "materials": {
-                "ingredient1": 1,
-                "ingredient2": 2,
-                "ingredient3": 3
+                "Radscorpion meat": 1
             },
-            "produces": 2,
+            "produces": 1,
             "requirements": "Cooking station"
         },
         "inst-effect": {
-            "HP": 35,
-            "rad": 10
+            "Hit Points": 150
         },
-        "name": "Item name",
+        "name": "Radscorpion steak",
+        "type": "food",
+        "value": 65,
+        "weight": 1
+    },
+    {
+        "baseid": "0004a14f",
+        "compond-of": [
+            "Grilled radstag",
+            "Radstag stew",
+            "Cram"
+        ],
+        "inst-effect": {
+            "Hit Points": 60,
+            "Radiation": 13
+        },
+        "name": "Radstag meat",
+        "type": "food",
+        "value": 50,
+        "weight": 1
+    },
+    {
+        "baseid": "0004696a",
+        "cont-effect": [
+            {
+                "Energy Resistance": 30,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 16,
+            "materials": {
+                "Gourd": 1,
+                "Radstag meat": 1,
+                "Silt bean": 1,
+                "Vodka": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 150
+        },
+        "name": "Radstag stew",
+        "type": "food",
+        "value": 60,
+        "weight": 1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx01c710",
+        "compond-of": [
+            "Fried fog crawler"
+        ],
+        "inst-effect": {
+            "Hit Points": 90,
+            "Radiation": 6
+        },
+        "name": "Raw fog crawler meat",
+        "type": "food",
+        "value": 110,
+        "weight": 1
+    },
+    {
+        "baseid": "000e0043",
+        "compond-of": [
+            "Mirelurk cake",
+            "Slocum's Buzzbites",
+            "Noodle cup",
+            "Blamco Brand Mac and Cheese",
+            "Fancy Lads Snack Cakes (pre-War)",
+            "Sugar Bombs (pre-War)"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Razorgrain",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0004695a",
+        "crafting": {
+            "XP": 7,
+            "materials": {
+                "Brahmin meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 110
+        },
+        "name": "Ribeye steak",
+        "type": "food",
+        "value": 40,
+        "weight": 1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04cbbc",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Ant meat": 3
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 45
+        },
+        "name": "Roasted ant",
+        "type": "food",
+        "value": 7,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx04cbbf",
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Bloodworm meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation Resistance": 10
+        },
+        "name": "Roasted bloodworm",
+        "type": "food",
+        "value": 10,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00046941",
+        "cont-effect": [
+            {
+                "Max Action Points": 10,
+                "second": 1800
+            }
+        ],
+        "crafting": {
+            "XP": 9,
+            "materials": {
+                "Mirelurk meat": 2
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 70
+        },
+        "name": "Roasted mirelurk meat",
+        "type": "food",
+        "value": 40,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000366ba",
+        "inst-effect": {
+            "Hit Points": 30,
+            "Radiation": 9
+        },
+        "name": "Salisbury Steak",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000e3780",
+        "inst-effect": {
+            "Hit Points": 60
+        },
+        "name": "Salisbury Steak (pre-War)",
+        "type": "food",
+        "value": 25,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx057158",
+        "cont-effect": [
+            {
+                "LCK": 1,
+                "second": 1800
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Aster": 1,
+                "Black bloodleaf": 1,
+                "Blight": 1,
+                "Lure weed": 1,
+                "Rabbit leg": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 45
+        },
+        "name": "Seasoned rabbit skewers",
+        "type": "food",
+        "value": 15,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001be2ab",
+        "compond-of": [
+            "Radstag stew",
+            "Pork n' Beans",
+            "Salisbury Steak (pre-War)"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Silt bean",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0006352f",
+        "crafting": {
+            "materials": {
+                "Coffee tin": 1,
+                "Dirty water": 1,
+                "Mirelurk egg": 1,
+                "Oil": 1,
+                "Razorgrain": 3
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Action Points": 25,
+            "Hit Points": -10,
+            "PER": 1
+        },
+        "name": "Slocum's Buzzbites",
+        "type": "food",
+        "value": 0,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00033100",
+        "compond-of": [
+            "Cooked softshell meat"
+        ],
+        "inst-effect": {
+            "Hit Points": 40,
+            "Radiation": 15
+        },
+        "name": "Softshell mirelurk meat",
+        "type": "food",
+        "value": 22,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000366bc",
+        "compond-of": [
+            "Crispy squirrel bits",
+            "Squirrel on a stick",
+            "Squirrel stew"
+        ],
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 5
+        },
+        "name": "Squirrel bits",
+        "type": "food",
+        "value": 4,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000366bb",
+        "crafting": {
+            "XP": 1,
+            "materials": {
+                "Squirrel bits": 1,
+                "Wood": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 45
+        },
+        "name": "Squirrel on a stick",
+        "type": "food",
+        "value": 15,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00036927",
+        "cont-effect": [
+            {
+                "Experience Points": 0.02,
+                "second": 7200
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Bloodleaf": 1,
+                "Carrot": 1,
+                "Dirty water": 2,
+                "Squirrel bits": 1,
+                "Tato": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 105
+        },
+        "name": "Squirrel stew",
+        "type": "food",
+        "value": 24,
+        "weight": 1
+    },
+    {
+        "baseid": "00046945",
+        "cont-effect": [
+            {
+                "PER": 1,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 7,
+            "materials": {
+                "Stingwing meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 130
+        },
+        "name": "Stingwing filet",
+        "type": "food",
+        "value": 35,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00074d0f",
+        "compond-of": [
+            "Stingwing filet"
+        ],
+        "inst-effect": {
+            "Hit Points": 65,
+            "Radiation": 9
+        },
+        "name": "Stingwing meat",
+        "type": "food",
+        "value": 30,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000330f2",
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 7
+        },
+        "name": "Sugar Bombs",
+        "type": "food",
+        "value": 11,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000e3782",
+        "inst-effect": {
+            "Hit Points": 30
+        },
+        "name": "Sugar Bombs (pre-War)",
+        "type": "food",
+        "value": 14,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000366be",
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation": 4
+        },
+        "name": "Sweet roll",
+        "type": "food",
+        "value": 9,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0016ca4f",
+        "inst-effect": {
+            "Hit Points": 30
+        },
+        "name": "Synthetic gorilla meat",
+        "type": "food",
+        "value": 28,
+        "weight": 1
+    },
+    {
+        "baseid": "000d981d",
+        "compond-of": [
+            "Berry Mentats",
+            "Lock Joint syringe",
+            "Mirelurk jerky",
+            "Fancy Lads Snack Cakes (pre-War)"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Tarberry",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001b5cc4",
+        "cont-effect": [
+            {
+                "Max Hit Points": 50,
+                "second": 7200
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Blood pack": 1,
+                "Carrot": 2,
+                "Mutfruit": 2,
+                "Pristine deathclaw egg": 1,
+                "Purified water": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 115
+        },
+        "name": "Tasty deathclaw omelette",
+        "type": "food",
+        "value": 100,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0009dcc4",
+        "compond-of": [
+            "Deathclaw Wellingham",
+            "Squirrel stew",
+            "Vegetable soup",
+            "Vegetable starch",
+            "Yao guai roast",
+            "InstaMash",
+            "Potato Crisps",
+            "Nuka-Hearty"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 5
+        },
+        "name": "Tato",
+        "type": "food",
+        "value": 7,
+        "weight": 0.5
+    },
+    {
+        "baseid": "001c400d",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 5
+        },
+        "name": "Tato flower",
+        "type": "food",
+        "value": 7,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx00f11d",
+        "cont-effect": [
+            {
+                "Experience Points": 0.1,
+                "second": 7200
+            }
+        ],
+        "name": "The Captain's Feast",
+        "type": "food",
+        "value": 1000,
+        "weight": 0.5
+    },
+    {
+        "baseid": "0009f24b",
+        "compond-of": [
+            "Herbal anodyne",
+            "Herbal antimicrobial"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 5
+        },
+        "name": "Thistle",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0004a3b9",
+        "cont-effect": [
+            {
+                "Radiation Resistance": 25,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "materials": {
+                "Carrot": 1,
+                "Dirty water": 1,
+                "Tato": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 55
+        },
+        "name": "Vegetable soup",
+        "type": "food",
+        "value": 13,
+        "weight": 1
+    },
+    {
+        "baseid": "001c4012",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 3
+        },
+        "name": "Wild corn",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001c400e",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Wild mutfruit",
+        "type": "food",
+        "value": 8,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001c400f",
+        "compond-of": [
+            "Herbal anodyne",
+            "Herbal stimulant"
+        ],
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Wild razorgrain",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0006654f",
+        "inst-effect": {
+            "Hit Points": 10,
+            "Radiation": 2
+        },
+        "name": "Wild tarberry",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx0140f9",
+        "compond-of": [
+            "Wolf ribs"
+        ],
+        "inst-effect": {
+            "Hit Points": 20,
+            "Radiation": 8
+        },
+        "name": "Wolf meat",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx048400",
+        "cont-effect": [
+            {
+                "effect": "small accuracy bonus",
+                "second": 300
+            },
+            {
+                "effect": "night vision in exteriors",
+                "second": 300
+            }
+        ],
+        "crafting": {
+            "XP": 3,
+            "materials": {
+                "Lure weed": 1,
+                "Wolf meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 60
+        },
+        "name": "Wolf ribs",
+        "type": "food",
+        "value": 16,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00047660",
+        "compond-of": [
+            "Yao guai ribs",
+            "Yao guai roast",
+            "Deathclaw cage",
+            "Mounted yao guai head"
+        ],
+        "inst-effect": {
+            "Hit Points": 80,
+            "Radiation": 6
+        },
+        "name": "Yao guai meat",
+        "type": "food",
+        "value": 85,
+        "weight": 1
+    },
+    {
+        "baseid": "00046955",
+        "cont-effect": [
+            {
+                "Damage Resistance": 15,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 15,
+            "materials": {
+                "Yao guai meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 165
+        },
+        "name": "Yao guai ribs",
+        "type": "food",
+        "value": 90,
+        "weight": 1
+    },
+    {
+        "baseid": "0004696d",
+        "cont-effect": [
+            {
+                "Melee Damage": 60,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 16,
+            "materials": {
+                "Carrot": 1,
+                "Tato": 1,
+                "Yao guai meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "Hit Points": 210
+        },
+        "name": "Yao guai roast",
+        "type": "food",
+        "value": 110,
+        "weight": 1
+    },
+    {
+        "baseid": "000366bd",
+        "crafting": {
+            "materials": {
+                "Mirelurk egg": 1,
+                "Oil": 1,
+                "Plastic": 1
+            },
+            "produces": 1,
+            "requirements": "Food processor"
+        },
+        "inst-effect": {
+            "Hit Points": 15,
+            "Radiation": 5
+        },
+        "name": "Yum Yum Deviled Eggs",
         "type": "food",
         "value": 20,
         "weight": 0.5
@@ -452,12 +2546,12 @@
                 "ingredient2": 2,
                 "ingredient3": 3
             },
-            "produces": 2,
+            "produces": 1,
             "requirements": "Cooking station"
         },
         "inst-effect": {
-            "HP": 35,
-            "rad": 10
+            "Hit Points": 35,
+            "Radiation": 10
         },
         "name": "Item name",
         "type": "food",
