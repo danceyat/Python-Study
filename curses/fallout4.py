@@ -139,7 +139,7 @@ class Pipboy:
             os.rename(self.dataFileName, self.dataFileName + ".bak")
 
         with open(self.dataFileName, 'w') as dataFile:
-            json.dump(self.data, dataFile, indent = 4)
+            json.dump(self.data, dataFile, indent = 4, sort_keys = True)
 
     def handleMenuPage(self):
         handler = None
@@ -234,41 +234,59 @@ class Pipboy:
     def handleBrowsePage(self):
         handler = None
 
-        # show page
-        self.scr.clear()
-        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
+        # prepare data
         entries = []
         for item in self.data:
             entries.append(item["name"])
         select = 0
-        if len(entries) > select:
-            for i in range(min(len(entries) - select, self.h2 - 2)):
-                pass
-        self.scr.refresh()
+        winSize = self.h2 - 2
+        winBegin = 0
+        winEnd = min(len(entries), winSize)
+
+        # show page
+        self.browsePageShowEntry(entries, select, winBegin, winEnd)
 
         # handle key
         while (1):
             c = self.stdscr.getch()
             if c == 69 or c == 101:
-                handler = selections[select][1]
+                handler = None
                 break
             elif c == 9:
-                handler = self.handleLoadingPage
+                handler = self.handleMenuPage
                 break
             elif c == 87 or c == 119:
-                if select > 0:
+                if select > winBegin:
                     select = select - 1
-                    self.menuPageShowMenu(selections, select, y)
-                    self.scr.refresh()
+                    self.browsePageShowEntry(entries, select, winBegin, winEnd)
+                elif select > 0:
+                    select = select - 1
+                    winBegin = winBegin - 1
+                    winEnd = winEnd - 1
+                    self.browsePageShowEntry(entries, select, winBegin, winEnd)
             elif c == 83 or c == 115:
-                if select < len(selections) - 1:
+                if select < winEnd - 1:
                     select = select + 1
-                    self.menuPageShowMenu(selections, select, y)
-                    self.scr.refresh()
+                    self.browsePageShowEntry(entries, select, winBegin, winEnd)
+                elif select < len(entries) - 1:
+                    select = select + 1
+                    winBegin = winBegin + 1
+                    winEnd = winEnd  + 1
+                    self.browsePageShowEntry(entries, select, winBegin, winEnd)
             else:
                 pass
 
         return handler
+
+    def browsePageShowEntry(self, entries, select, begin, end):
+        self.scr.clear()
+        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
+        for i in range(end - begin):
+            if i + begin == select:
+                self.scr.addstr(i, 0, entries[begin + i], curses.A_REVERSE)
+            else:
+                self.scr.addstr(i, 0, entries[begin + i])
+        self.scr.refresh()
 
     def handleNewPage(self):
         handler = None

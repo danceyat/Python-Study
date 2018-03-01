@@ -1,26 +1,467 @@
 [
     {
-        "available": "all",
-        "name": "Angler meat",
-        "baseid": "xx01c714",
-        "cont-effect": [],
-        "value": 20,
         "add-on": "Far Harbor",
-        "weight": 0.5,
+        "baseid": "xx01c714",
+        "compond-of": [
+            "Poached angler"
+        ],
+        "inst-effect": {
+            "HP": 35,
+            "rad": 10
+        },
+        "name": "Angler meat",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx0138ee",
+        "compond-of": [
+            "Roasted ant"
+        ],
+        "inst-effect": {
+            "HP": 15,
+            "rad": 11
+        },
+        "name": "Ant meat",
+        "type": "food",
+        "value": 3,
+        "weight": 0.1
+    },
+    {
+        "available": "survival",
+        "baseid": "001f24b6",
+        "compond-of": [
+            "Herbal antimicrobial",
+            "Herbal stimulant"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 3
+        },
+        "name": "Ash blossom",
+        "type": "food",
+        "value": 6,
+        "weight": 1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx013384",
+        "compond-of": [
+            "Fire Belly",
+            "Seasoned rabbit skewers",
+            "Vim Captain's Blend"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 2
+        },
+        "name": "Aster",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0004a151",
+        "cont-effect": [
+            {
+                "RR": 20,
+                "second": 600
+            }
+        ],
         "crafting": {
+            "XP": 3,
             "materials": {
-                "Angler meat": 1
+                "Bloatfly meat": 3
             },
-            "XP": 6,
             "produces": 1,
             "requirements": "Cooking station"
         },
         "inst-effect": {
-            "rad": 10,
-            "HP": 35
+            "HP": 40
         },
+        "name": "Baked bloatfly",
+        "type": "food",
+        "value": 15,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx01b189",
         "compond-of": [
-            "Poached angler"
-        ]
+            "Chicken noodle soup",
+            "Fire Belly",
+            "Seasoned rabbit skewers"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 2
+        },
+        "name": "Black bloodleaf",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "0002fbe4",
+        "inst-effect": {
+            "HP": 20,
+            "rad": 6
+        },
+        "name": "Blamco Brand Mac and Cheese",
+        "type": "food",
+        "value": 10,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000e3768",
+        "crafting": {
+            "materials": {
+                "Carrot": 1,
+                "Plastic": 1,
+                "Purified water": 1,
+                "Razorgrain": 1
+            },
+            "produces": 1,
+            "requirements": "Food processor"
+        },
+        "inst-effect": {
+            "HP": 40
+        },
+        "name": "Blamco Brand Mac and Cheese (pre-War)",
+        "type": "food",
+        "value": 15,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx044042",
+        "compond-of": [
+            "Seasoned rabbit skewers"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 2
+        },
+        "name": "Blight",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000030f4",
+        "compond-of": [
+            "Baked bloatfly"
+        ],
+        "inst-effect": {
+            "HP": 5,
+            "rad": 6
+        },
+        "name": "Bloatfly meat",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "baseid": "00074d0d",
+        "compond-of": [
+            "Bloodbug steak",
+            "Resilient sludge cocktail"
+        ],
+        "inst-effect": {
+            "HP": 45,
+            "rad": 9
+        },
+        "name": "Bloodbug meat",
+        "type": "food",
+        "value": 18,
+        "weight": 0.5
+    },
+    {
+        "baseid": "0004693f",
+        "cont-effect": [
+            {
+                "mHP": 15,
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 5,
+            "materials": {
+                "Bloodbug meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "HP": 105
+        },
+        "name": "Bloodbug steak",
+        "type": "food",
+        "value": 24,
+        "weight": 0.5
+    },
+    {
+        "baseid": "001c25ee",
+        "compond-of": [
+            "Skeeto Spit",
+            "Squirrel stew",
+            "Ultra jet"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 2
+        },
+        "name": "Bloodleaf",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx0138c3",
+        "compond-of": [
+            "Roasted bloodworm"
+        ],
+        "inst-effect": {
+            "HP": 25,
+            "rad": 7
+        },
+        "name": "Bloodworm meat",
+        "type": "food",
+        "value": 5,
+        "weight": 0.5
+    },
+    {
+        "baseid": "0004a13f",
+        "compond-of": [
+            "Ribeye steak",
+            "Cram",
+            "Salisbury Steak"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 8
+        },
+        "name": "Brahmin meat",
+        "type": "food",
+        "value": 28,
+        "weight": 1
+    },
+    {
+        "baseid": "001c0fc2",
+        "compond-of": [
+            "Mentats"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 3
+        },
+        "name": "Brain fungus",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000330f6",
+        "compond-of": [
+            "Vim Quartz"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 1
+        },
+        "name": "Bubblegum",
+        "type": "food",
+        "value": 5,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000bea58",
+        "inst-effect": {
+            "HP": 10,
+            "rad": 2
+        },
+        "name": "Canned dog food",
+        "type": "food",
+        "value": 5,
+        "weight": 0.5
+    },
+    {
+        "baseid": "000f742e",
+        "compond-of": [
+            "Iguana soup",
+            "Orange Mentats",
+            "Squirrel stew",
+            "Tasty deathclaw omelette",
+            "Vegetable soup",
+            "Yao guai roast",
+            "Chicken noodle soup",
+            "Vim Quartz",
+            "Blamco Brand Mac and Cheese (pre-War)"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 3
+        },
+        "name": "Carrot",
+        "type": "food",
+        "value": 3,
+        "weight": 0.1
+    },
+    {
+        "baseid": "001c4013",
+        "compond-of": [
+            "Herbal anodyne",
+            "Herbal antimicrobial",
+            "Nuka-Hearty"
+        ],
+        "inst-effect": {
+            "HP": 10,
+            "rad": 3
+        },
+        "name": "Carrot flower",
+        "type": "food",
+        "value": 6,
+        "weight": 0.1
+    },
+    {
+        "baseid": "000939b8",
+        "inst-effect": {
+            "HP": 15,
+            "rad": 8
+        },
+        "name": "Cat meat",
+        "type": "food",
+        "value": 8,
+        "weight": 0.5
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx026189",
+        "compond-of": [
+            "Predator grenade"
+        ],
+        "inst-effect": {
+            "HP": 15,
+            "rad": 11
+        },
+        "name": "Cave cricket gland",
+        "type": "food",
+        "value": 3,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Nuka-World",
+        "baseid": "xx0138c4",
+        "compond-of": [
+            "Crispy cave cricket"
+        ],
+        "inst-effect": {
+            "HP": 15,
+            "rad": 11
+        },
+        "name": "Cave cricket meat",
+        "type": "food",
+        "value": 50,
+        "weight": 0.1
+    },
+    {
+        "add-on": "Far Harbor",
+        "baseid": "xx01c717",
+        "cont-effect": [
+            {
+                "mAP": 15,
+                "second": 1200
+            },
+            {
+                "effect": "reduce fall damage",
+                "second": 1200
+            }
+        ],
+        "crafting": {
+            "XP": 6,
+            "materials": {
+                "Angler meat": 1
+            },
+            "produces": 1,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "HP": 100
+        },
+        "name": "Poached angler",
+        "type": "food",
+        "value": 40,
+        "weight": 0.5
+    },
+    {
+        "add-on": "",
+        "addition": "",
+        "available": "survival",
+        "baseid": "xx000000",
+        "compond-of": [
+            "item1",
+            "item2"
+        ],
+        "cont-effect": [
+            {
+                "effect": "some effect",
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "ingredient1": 1,
+                "ingredient2": 2,
+                "ingredient3": 3
+            },
+            "produces": 2,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "HP": 35,
+            "rad": 10
+        },
+        "name": "Item name",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
+    },
+    {
+        "add-on": "",
+        "addition": "",
+        "available": "survival",
+        "baseid": "xx000000",
+        "compond-of": [
+            "item1",
+            "item2"
+        ],
+        "cont-effect": [
+            {
+                "effect": "some effect",
+                "second": 3600
+            }
+        ],
+        "crafting": {
+            "XP": 10,
+            "materials": {
+                "ingredient1": 1,
+                "ingredient2": 2,
+                "ingredient3": 3
+            },
+            "produces": 2,
+            "requirements": "Cooking station"
+        },
+        "inst-effect": {
+            "HP": 35,
+            "rad": 10
+        },
+        "name": "Item name",
+        "type": "food",
+        "value": 20,
+        "weight": 0.5
     }
 ]
