@@ -2,7 +2,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx01c714",
-        "compond-of": [
+        "component-of": [
             "Poached angler"
         ],
         "inst-effect": {
@@ -17,7 +17,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx0138ee",
-        "compond-of": [
+        "component-of": [
             "Roasted ant"
         ],
         "inst-effect": {
@@ -32,7 +32,7 @@
     {
         "available": "survival",
         "baseid": "001f24b6",
-        "compond-of": [
+        "component-of": [
             "Herbal antimicrobial",
             "Herbal stimulant"
         ],
@@ -48,7 +48,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx013384",
-        "compond-of": [
+        "component-of": [
             "Fire Belly",
             "Seasoned rabbit skewers",
             "Vim Captain's Blend"
@@ -89,7 +89,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx01b189",
-        "compond-of": [
+        "component-of": [
             "Chicken noodle soup",
             "Fire Belly",
             "Seasoned rabbit skewers"
@@ -137,7 +137,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx044042",
-        "compond-of": [
+        "component-of": [
             "Seasoned rabbit skewers"
         ],
         "inst-effect": {
@@ -151,7 +151,7 @@
     },
     {
         "baseid": "000030f4",
-        "compond-of": [
+        "component-of": [
             "Baked bloatfly"
         ],
         "inst-effect": {
@@ -165,7 +165,7 @@
     },
     {
         "baseid": "00074d0d",
-        "compond-of": [
+        "component-of": [
             "Bloodbug steak",
             "Resilient sludge cocktail"
         ],
@@ -204,7 +204,7 @@
     },
     {
         "baseid": "001c25ee",
-        "compond-of": [
+        "component-of": [
             "Skeeto Spit",
             "Squirrel stew",
             "Ultra jet"
@@ -221,7 +221,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx0138c3",
-        "compond-of": [
+        "component-of": [
             "Roasted bloodworm"
         ],
         "inst-effect": {
@@ -235,7 +235,7 @@
     },
     {
         "baseid": "0004a13f",
-        "compond-of": [
+        "component-of": [
             "Ribeye steak",
             "Cram",
             "Salisbury Steak (pre-War)"
@@ -251,7 +251,7 @@
     },
     {
         "baseid": "001c0fc2",
-        "compond-of": [
+        "component-of": [
             "Mentats"
         ],
         "inst-effect": {
@@ -265,7 +265,7 @@
     },
     {
         "baseid": "000330f6",
-        "compond-of": [
+        "component-of": [
             "Vim Quartz"
         ],
         "inst-effect": {
@@ -290,7 +290,7 @@
     },
     {
         "baseid": "000f742e",
-        "compond-of": [
+        "component-of": [
             "Iguana soup",
             "Orange Mentats",
             "Squirrel stew",
@@ -312,7 +312,7 @@
     },
     {
         "baseid": "001c4013",
-        "compond-of": [
+        "component-of": [
             "Herbal anodyne",
             "Herbal antimicrobial",
             "Nuka-Hearty"
@@ -340,7 +340,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx026189",
-        "compond-of": [
+        "component-of": [
             "Predator grenade"
         ],
         "inst-effect": {
@@ -355,7 +355,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx0138c4",
-        "compond-of": [
+        "component-of": [
             "Crispy cave cricket"
         ],
         "inst-effect": {
@@ -397,7 +397,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx056a4a",
-        "compond-of": [
+        "component-of": [
             "Chicken noodle soup"
         ],
         "inst-effect": {
@@ -435,7 +435,7 @@
     },
     {
         "baseid": "000330f8",
-        "compond-of": [
+        "component-of": [
             "Vegetable starch",
             "Vim",
             "Salisbury Steak (pre-War)",
@@ -523,7 +523,7 @@
     },
     {
         "baseid": "0002fbf7",
-        "compond-of": [
+        "component-of": [
             "Vim Refresh"
         ],
         "inst-effect": {
@@ -537,7 +537,7 @@
     },
     {
         "baseid": "00046939",
-        "compond-of": [
+        "component-of": [
             "Deathclaw egg omelette",
             "Deathclaw Wellingham"
         ],
@@ -577,7 +577,7 @@
     },
     {
         "baseid": "00074d0e",
-        "compond-of": [
+        "component-of": [
             "Deathclaw steak"
         ],
         "inst-effect": {
@@ -677,7 +677,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx01cd24",
-        "compond-of": [
+        "component-of": [
             "Smooth Operator",
             "Persuasion grenade",
             "Predator grenade"
@@ -783,7 +783,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx04aa17",
-        "compond-of": [
+        "component-of": [
             "Gatorclaw steak"
         ],
         "inst-effect": {
@@ -818,7 +818,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx04b419",
-        "compond-of": [
+        "component-of": [
             "Gazelle steak"
         ],
         "inst-effect": {
@@ -863,7 +863,7 @@
     },
     {
         "baseid": "001c0fc3",
-        "compond-of": [
+        "component-of": [
             "Antibiotics",
             "Herbal anodyne",
             "Herbal antimicrobial",
@@ -881,7 +881,7 @@
     },
     {
         "baseid": "000ef24d",
-        "compond-of": [
+        "component-of": [
             "Radstag stew",
             "Vim Refresh"
         ],
@@ -896,7 +896,7 @@
     },
     {
         "baseid": "001c4011",
-        "compond-of": [
+        "component-of": [
             "Herbal antimicrobial",
             "Herbal stimulant"
         ],
@@ -1027,7 +1027,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx04d2e7",
-        "compond-of": [
+        "component-of": [
             "Gulper slurry"
         ],
         "inst-effect": {
@@ -1078,7 +1078,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx04ba11",
-        "compond-of": [
+        "component-of": [
             "Grilled hermit crab"
         ],
         "inst-effect": {
@@ -1093,7 +1093,7 @@
     },
     {
         "baseid": "001c3fdc",
-        "compond-of": [
+        "component-of": [
             "Grape Mentats",
             "Psycho"
         ],
@@ -1108,7 +1108,7 @@
     },
     {
         "baseid": "000330fd",
-        "compond-of": [
+        "component-of": [
             "Iguana on a stick",
             "Iguana soup"
         ],
@@ -1194,7 +1194,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx044043",
-        "compond-of": [
+        "component-of": [
             "Seasoned rabbit skewers",
             "Wolf ribs"
         ],
@@ -1220,7 +1220,7 @@
     },
     {
         "baseid": "001c4010",
-        "compond-of": [
+        "component-of": [
             "Herbal anodyne",
             "Herbal stimulant"
         ],
@@ -1262,7 +1262,7 @@
     },
     {
         "baseid": "0023e9d4",
-        "compond-of": [
+        "component-of": [
             "Mirelurk cake",
             "Mirelurk egg omelette",
             "Slocum's Buzzbites",
@@ -1320,7 +1320,7 @@
     },
     {
         "baseid": "000330ff",
-        "compond-of": [
+        "component-of": [
             "Mirelurk cake",
             "Roasted mirelurk meat",
             "Vim Captain's Blend",
@@ -1394,7 +1394,7 @@
     },
     {
         "baseid": "00033101",
-        "compond-of": [
+        "component-of": [
             "Mole rat chunks",
             "Pork n' Beans"
         ],
@@ -1409,7 +1409,7 @@
     },
     {
         "baseid": "000330fb",
-        "compond-of": [
+        "component-of": [
             "Mutt chops",
             "Cram"
         ],
@@ -1443,7 +1443,7 @@
     },
     {
         "baseid": "00146156",
-        "compond-of": [
+        "component-of": [
             "Mutant hound chops"
         ],
         "inst-effect": {
@@ -1468,7 +1468,7 @@
     },
     {
         "baseid": "00033102",
-        "compond-of": [
+        "component-of": [
             "Dirty Wastelander",
             "Pax syringe",
             "Tasty deathclaw omelette",
@@ -1546,7 +1546,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx04aa1e",
-        "compond-of": [
+        "component-of": [
             "Grilled Nukalurk"
         ],
         "inst-effect": {
@@ -1632,7 +1632,7 @@
     },
     {
         "baseid": "00134c68",
-        "compond-of": [
+        "component-of": [
             "Tasty deathclaw omelette"
         ],
         "inst-effect": {
@@ -1646,7 +1646,7 @@
     },
     {
         "baseid": "0020d3de",
-        "compond-of": [
+        "component-of": [
             "Mirelurk queen steak"
         ],
         "inst-effect": {
@@ -1662,7 +1662,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx04aa23",
-        "compond-of": [
+        "component-of": [
             "Grilled queen Nukalurk"
         ],
         "inst-effect": {
@@ -1678,7 +1678,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx056a49",
-        "compond-of": [
+        "component-of": [
             "Seasoned rabbit skewers"
         ],
         "inst-effect": {
@@ -1693,7 +1693,7 @@
     {
         "add-on": "Nuka-World",
         "baseid": "xx0138f7",
-        "compond-of": [
+        "component-of": [
             "Rad-rat steak"
         ],
         "inst-effect": {
@@ -1727,7 +1727,7 @@
     },
     {
         "baseid": "00033106",
-        "compond-of": [
+        "component-of": [
             "Grilled radroach",
             "Mole rat cage"
         ],
@@ -1742,7 +1742,7 @@
     },
     {
         "baseid": "0004693b",
-        "compond-of": [
+        "component-of": [
             "Radscorpion egg omelette"
         ],
         "inst-effect": {
@@ -1776,7 +1776,7 @@
     },
     {
         "baseid": "00074d10",
-        "compond-of": [
+        "component-of": [
             "Radscorpion steak"
         ],
         "inst-effect": {
@@ -1814,7 +1814,7 @@
     },
     {
         "baseid": "0004a14f",
-        "compond-of": [
+        "component-of": [
             "Grilled radstag",
             "Radstag stew",
             "Cram"
@@ -1858,7 +1858,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx01c710",
-        "compond-of": [
+        "component-of": [
             "Fried fog crawler"
         ],
         "inst-effect": {
@@ -1872,7 +1872,7 @@
     },
     {
         "baseid": "000e0043",
-        "compond-of": [
+        "component-of": [
             "Mirelurk cake",
             "Slocum's Buzzbites",
             "Noodle cup",
@@ -2021,7 +2021,7 @@
     },
     {
         "baseid": "001be2ab",
-        "compond-of": [
+        "component-of": [
             "Radstag stew",
             "Pork n' Beans",
             "Salisbury Steak (pre-War)"
@@ -2060,7 +2060,7 @@
     },
     {
         "baseid": "00033100",
-        "compond-of": [
+        "component-of": [
             "Cooked softshell meat"
         ],
         "inst-effect": {
@@ -2074,7 +2074,7 @@
     },
     {
         "baseid": "000366bc",
-        "compond-of": [
+        "component-of": [
             "Crispy squirrel bits",
             "Squirrel on a stick",
             "Squirrel stew"
@@ -2160,7 +2160,7 @@
     },
     {
         "baseid": "00074d0f",
-        "compond-of": [
+        "component-of": [
             "Stingwing filet"
         ],
         "inst-effect": {
@@ -2216,7 +2216,7 @@
     },
     {
         "baseid": "000d981d",
-        "compond-of": [
+        "component-of": [
             "Berry Mentats",
             "Lock Joint syringe",
             "Mirelurk jerky",
@@ -2260,7 +2260,7 @@
     },
     {
         "baseid": "0009dcc4",
-        "compond-of": [
+        "component-of": [
             "Deathclaw Wellingham",
             "Squirrel stew",
             "Vegetable soup",
@@ -2306,7 +2306,7 @@
     },
     {
         "baseid": "0009f24b",
-        "compond-of": [
+        "component-of": [
             "Herbal anodyne",
             "Herbal antimicrobial"
         ],
@@ -2368,7 +2368,7 @@
     },
     {
         "baseid": "001c400f",
-        "compond-of": [
+        "component-of": [
             "Herbal anodyne",
             "Herbal stimulant"
         ],
@@ -2395,7 +2395,7 @@
     {
         "add-on": "Far Harbor",
         "baseid": "xx0140f9",
-        "compond-of": [
+        "component-of": [
             "Wolf ribs"
         ],
         "inst-effect": {
@@ -2439,7 +2439,7 @@
     },
     {
         "baseid": "00047660",
-        "compond-of": [
+        "component-of": [
             "Yao guai ribs",
             "Yao guai roast",
             "Deathclaw cage",
@@ -2529,7 +2529,7 @@
         "addition": "",
         "available": "survival",
         "baseid": "xx000000",
-        "compond-of": [
+        "component-of": [
             "item1",
             "item2"
         ],

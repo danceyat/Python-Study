@@ -78,6 +78,7 @@ class Pipboy:
         #self.scr.border()
 
         self.dataFileName = "fallout4consumable.json"
+        self.lastSelect = -1
         self.init = True
 
     def start(self):
@@ -238,10 +239,15 @@ class Pipboy:
         entries = []
         for item in self.data:
             entries.append(item["name"])
-        select = 0
-        winSize = self.h2 - 2
-        winBegin = 0
-        winEnd = min(len(entries), winSize)
+
+        if self.lastSelect > 0:
+            select = self.lastSelect
+            winBegin = self.lastWinBegin
+            winEnd = self.lastWinEnd
+        else:
+            select = 0
+            winBegin = 0
+            winEnd = min(len(entries), self.h2 - 2)
 
         # show page
         self.browsePageShowEntry(entries, select, winBegin, winEnd)
@@ -250,9 +256,14 @@ class Pipboy:
         while (1):
             c = self.stdscr.getch()
             if c == 69 or c == 101:
-                handler = None
-                break
+                if select < len(entries):
+                    self.lastSelect = select
+                    self.lastWinBegin = winBegin
+                    self.lastWinEnd = winEnd
+                    handler = self.handleViewItemPage
+                    break
             elif c == 9:
+                self.lastSelect = -1
                 handler = self.handleMenuPage
                 break
             elif c == 87 or c == 119:
@@ -297,6 +308,110 @@ class Pipboy:
         handler = None
 
         return handler
+
+    def handleViewItemPage(self):
+        handler = None
+
+        # show page
+        data = self.data[self.lastSelect]
+        select = 0
+        self.viewItemPageShowData(data, select)
+
+        # handle key
+        while (1):
+            c = self.stdscr.getch()
+            if c == 69 or c == 101:
+                handler = None
+                break
+            elif c == 9:
+                handler = self.handleBrowsePage
+                break
+            else:
+                pass
+
+        return handler
+
+    def viewItemPageShowData(self, data, select):
+        # TODO: consider situation of line overflow
+        self.scr.clear()
+        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
+        y = 0
+        coef3 = [ 0.05, 0.35, 0.65 ]
+        coef2 = [ 0.05, 0.50 ]
+
+        # name
+        self.scr.addstr(y, 0, data["name"], curses.A_BOLD)
+        # add-on
+        if "add-on" in data:
+            self.scr.addstr(y, len(data["name"]) + 2, "[" + data["add-on"] + "]")
+        # type
+        self.scr.addstr(y, self.w2 - len(data["type"]), data["type"])
+        y = y + 1
+
+        # weight
+        self.scr.addstr(y, int(self.w2 * coef3[0]), "Weight: " + str(data["weight"]))
+        # value
+        self.scr.addstr(y, int(self.w2 * coef3[1]), "Value: " + str(data["value"]))
+        # baseid
+        self.scr.addstr(y, int(self.w2 * coef3[2]), "Base ID: " + str(data["baseid"]))
+        y = y + 2
+
+        # effect
+        self.scr.addstr(y, 0, "Effect", curses.A_BOLD)
+        y = y + 1
+        if "inst-effect" in data:
+            i = 0
+            for e in data["inst-effect"]:
+                self.scr.addstr(y, int(self.w2 * coef2[i % len(coef2)]), "+{} {}".format(data["inst-effect"][e], e))
+                i = i + 1
+                if i % 2 == 0:
+                    y = y + 1
+            if i % 2 == 1:
+                y = y + 1
+        if "cont-effect" in data:
+            for e in data["cont-effect"]:
+                if "effect" in e:
+                    self.scr.addstr(y, int(self.w2 * coef2[0]), "{} for {}s".format(e["effect"], e["second"]))
+                else:
+                    eName, eValue = "", ""
+                    for e0 in e:
+                        if e0 != "second":
+                            eName = e0
+                            eValue = e[e0]
+                    self.scr.addstr(y, int(self.w2 * coef2[0]), "+{} {} for {}s".format(eValue, eName, e["second"]))
+                y = y + 1
+        y = y + 1
+
+        # crafting
+        if "crafting" in data:
+            self.scr.addstr(y, 0, "Crafting", curses.A_BOLD)
+            crafting = data["crafting"]
+            if "XP" in crafting:
+                self.scr.addstr(y, 10, "+ " + str(crafting["XP"]) + " XP")
+            self.scr.addstr(y, self.w2 - len(crafting["requirements"]), crafting["requirements"], curses.A_UNDERLINE)
+            s = self.buildCraftingString(data["name"], crafting)
+            y = y + 1
+            self.scr.addstr(y, int(self.w2 * coef3[0]), s)
+            y = y + 2 + int(len(s) / self.w2)
+
+        # as one component
+        # TODO: navigate from here
+        # TODO: too much line
+        if "component-of" in data:
+            self.scr.addstr(y, 0, "Component Of", curses.A_BOLD)
+            y = y + 1
+            for comp in data["component-of"]:
+                self.scr.addstr(y, int(self.w2 * coef2[0]), comp)
+                y = y + 1
+        self.scr.refresh()
+
+    def buildCraftingString(self, name, crafting):
+        s = name + "(" + str(crafting["produces"]) + "):   "
+        comp = []
+        for material in crafting["materials"]:
+            comp.append(material + "(" + str(crafting["materials"][material]) + ")")
+        s = s + " + ".join(comp)
+        return s
 
     def showBackground(self):
         self.stdscr.clear()
