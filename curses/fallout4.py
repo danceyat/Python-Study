@@ -4,45 +4,33 @@ import os
 import time
 
 class Pipboy:
-    menuLineCount = 3
-    menuKeyIntraSeparator = ") "
-    menuKeyInterSeparator = "    "
-    titleLineCount = 4
-    marginTop = 1
-    marginBottom = 1
-    marginLeft = 2
-    marginRight = 2
-    paddingTop = 1
-    paddingBottom = 0
-    paddingLeft = 1
-    paddingRight = 1
-
     """
-    +---------------- terminal border (no width, invisible)
-    |           1
-    |2 +------------- Pip-Boy border
-    |  |        2
-    |  |
-    |  |      xxxxx   title line
-    |  |       xxx
-    |  |
-    |  |4   ********* content area
-    |  |    *
-    |  |    *
-
-    ......
-
-    |  |    *
-    |  |    *
-    |  |    *********
-    |  |        2
-    |  |
-    |  +------------- Pip-Boy border
-    |           1
-    |        xxxxxxx  menu line
-    |
-    |
-    +---------------- terminal border (no width, invisible)
+    ----------------- terminal border (no width, invisible) -----------------
+    |                          <borderMargin=1>                             |
+    |  +----------------------- Pip-Boy border --------------------------+  |
+    |  |                         title line 1                            |  |
+    |  |                         title line 2                            |  |
+    |  |                       blank title line                          |  |
+    |  |==========================separator==============================|  |
+    |  |                      <contentMargin=1>                          |  |
+    |  |    *********************************************************    |  |
+    |  |    *                                                       *    |  |
+    |  |    *                    content area                       *    |  |
+    |  |    *                                                       *    |  |
+    |  |    *                                                       *    |  |
+    |2 | 4  *                                                       *  4 | 2|
+    |  |    *                                                       *    |  |
+    |  |    *                                                       *    |  |
+    |  |    *                                                       *    |  |
+    |  |    *********************************************************    |  |
+    |  |                       <contentMargin=0>                         |  |
+    |  |                        terminal line                            |  |
+    |  +----------------------- Pip-Boy border --------------------------+  |
+    |                           <borderMargin=1>                            |
+    |                             menu line 1                               |
+    |                             menu line 2                               |
+    |                           blank menu line                             |
+    ----------------- terminal border (no width, invisible) -----------------
 
     terminal size: w0 x h0
     Pip-Boy size: w1 x h1
@@ -50,36 +38,59 @@ class Pipboy:
     """
 
     def __init__(self, scr):
-        self.init = False
         # TODO: turn off debug
         self.debug = True
-        self.stdscr = scr
+        self.version = "1.1.0"
 
-        # show error message and exit if terminal's too small
-        self.h0, self.w0 = self.stdscr.getmaxyx()
-        if self.w0 < 80 or self.h0 < 24:
-            err1 = "Screen too small for Pip-Boy!"
-            err2 = "Press any key to exit..."
-            if self.w0 < len(err1) or self.h0 < 2:
-                # WTF!!
-                return
-            self.stdscr.addstr(int((self.h0 - 1) / 2), int((self.w0 - len(err1)) / 2), err1)
-            self.stdscr.addstr(int((self.h0 - 1) / 2) + 1, int((self.w0 - len(err2)) / 2), err2)
-            self.stdscr.getkey()
-            return
+        # top, bottom, left, right
+        self.borderMargin = [ 1, 1, 2, 2 ]
+        self.contentMargin = [ 1, 1, 1, 1 ]
+        self.menuKeyLineCount = 2
+        self.titleLineCount = 2
 
-        # create sub window and show background
-        self.stdscr.bkgdset(' ', curses.color_pair(1))
-        self.showBackground()
-        h = self.h0 - (self.marginTop + 1 + self.paddingTop + self.titleLineCount) - (self.paddingBottom + 1 + self.marginBottom + self.menuLineCount)
-        w = self.w0 - (self.marginLeft + 1 + self.paddingLeft) - (self.marginRight + 1 + self.paddingRight)
-        self.scr = self.stdscr.subwin(h, w, self.marginTop + 1 + self.paddingTop + self.titleLineCount, self.marginLeft + 1 + self.paddingLeft)
-        self.h2, self.w2 = self.scr.getmaxyx()
-        #self.scr.border()
+        # intra separator, inter separator
+        self.menuKeySeparator = [ ") ", "    " ]
+        self.defaultMenuKey = [ ("WASD", "Navigate"), ("E", "Select"), ("Tab", "Exit") ]
 
+        # data related
         self.dataFileName = "fallout4consumable.json"
         self.lastSelect = -1
-        self.init = True
+
+        # initialize
+        self.stdscr = scr
+        self.stdscr.bkgdset(' ', curses.color_pair(1))
+        self.examineScreenSize()
+
+        # create sub window and show background
+        self.showBackground()
+        h = self.h0 - (self.borderMargin[0] + 1 + self.titleLineCount + 2 + self.contentMargin[0]) - (1 + self.menuKeyLineCount + self.borderMargin[1] + 2 + self.contentMargin[1])
+        w = self.w0 - (self.borderMargin[2] + 1 + self.contentMargin[2]) - (self.borderMargin[3] + 1 + self.contentMargin[3])
+        self.scr = self.stdscr.subwin(h, w, self.borderMargin[0] + 1 + self.titleLineCount + 2 + self.contentMargin[0], self.borderMargin[2] + 1 + self.contentMargin[2])
+        self.h2, self.w2 = self.scr.getmaxyx()
+
+        # create rolling pad, 64 lines is almost enough for all item...
+        self.pad = curses.newpad(64, self.w2)
+        self.pad.bkgdset(' ', curses.color_pair(1))
+
+    def showFatalError(self, errorMsg):
+        err1 = errorMsg
+        err2 = "Press any key to exit..."
+        if self.w0 < len(err1) or self.w0 < len(err2) or self.h0 < 2:
+            # WTF!!
+            exit()
+
+        self.stdscr.clear()
+        self.stdscr.addstr(int((self.h0 - 1) / 2), int((self.w0 - len(err1)) / 2), err1)
+        self.stdscr.addstr(int((self.h0 - 1) / 2) + 1, int((self.w0 - len(err2)) / 2), err2)
+        self.stdscr.refresh()
+        self.stdscr.getkey()
+        exit()
+
+    def examineScreenSize(self):
+        """ examine screen size and we get (w0, h0) """
+        self.h0, self.w0 = self.stdscr.getmaxyx()
+        if self.w0 < 80 or self.h0 < 24:
+            self.showFatalError("Screen too small for Pip-Boy!")
 
     def start(self):
         self.holotapeLoaded = False
@@ -96,7 +107,6 @@ class Pipboy:
 
         # show page
         self.scr.clear()
-        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
         if self.holotapeLoaded:
             self.scr.addstr(0, 0, "[ Holotape(WASTELAND CONSUMABLE) ]", curses.A_REVERSE)
         else:
@@ -147,14 +157,13 @@ class Pipboy:
 
         # show page
         self.scr.clear()
-        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
         y = self.fancyShowText("Fallout 4 Consumable Browser", 0, 0)
         y = self.fancyShowText("Browse and edit wasteland consumables. You can even add your own items here!", y, 0)
         y = y + 1
         selections = [
-                ( "Browse Consumables", self.handleBrowsePage),
-                ( "Edit New Consumable", self.handleNewPage),
-                ( "[ Make A Query! ]", self.handleQueryPage)]
+                ("Browse Consumables", self.handleBrowsePage),
+                ("Edit New Consumable", self.handleNewPage),
+                ("[ Make A Query! ]", self.handleQueryPage)]
         select = 0
         self.menuPageShowMenu(selections, select, y)
         self.scr.refresh()
@@ -247,7 +256,7 @@ class Pipboy:
         else:
             select = 0
             winBegin = 0
-            winEnd = min(len(entries), self.h2 - 2)
+            winEnd = min(len(entries), self.h2)
 
         # show page
         self.browsePageShowEntry(entries, select, winBegin, winEnd)
@@ -291,7 +300,6 @@ class Pipboy:
 
     def browsePageShowEntry(self, entries, select, begin, end):
         self.scr.clear()
-        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
         for i in range(end - begin):
             if i + begin == select:
                 self.scr.addstr(i, 0, entries[begin + i], curses.A_REVERSE)
@@ -312,57 +320,60 @@ class Pipboy:
     def handleViewItemPage(self):
         handler = None
 
-        # show page
-        data = self.data[self.lastSelect]
-        select = 0
-        self.viewItemPageShowData(data, select)
+        dataLength = self.viewItemPageFillData(self.data[self.lastSelect])
+        pos = 0
+        padX = self.borderMargin[2] + 1 + self.contentMargin[2]
+        padY = self.borderMargin[0] + 1 + self.titleLineCount + 2 + self.contentMargin[0]
+        self.pad.refresh(pos, 0, padY, padX, padY + self.h2 - 1, padX + self.w2 - 1)
 
-        # handle key
         while (1):
             c = self.stdscr.getch()
-            if c == 69 or c == 101:
-                handler = None
-                break
-            elif c == 9:
+            if c == 9 or c == 69 or c == 101:
                 handler = self.handleBrowsePage
                 break
+            elif c == 87 or c == 119:
+                if pos > 0:
+                    pos -= 1
+                    self.pad.refresh(pos, 0, padY, padX, padY + self.h2 - 1, padX + self.w2 - 1)
+            elif c == 83 or c == 115:
+                if pos + self.h2 < dataLength:
+                    pos += 1
+                    self.pad.refresh(pos, 0, padY, padX, padY + self.h2 - 1, padX + self.w2 - 1)
             else:
                 pass
 
         return handler
 
-    def viewItemPageShowData(self, data, select):
-        # TODO: consider situation of line overflow
-        self.scr.clear()
-        self.scr.addstr(self.h2 - 1, 0, " > ", curses.A_BOLD)
+    def viewItemPageFillData(self, data):
+        self.pad.clear()
         y = 0
         coef3 = [ 0.05, 0.35, 0.65 ]
         coef2 = [ 0.05, 0.50 ]
 
         # name
-        self.scr.addstr(y, 0, data["name"], curses.A_BOLD)
+        self.pad.addstr(y, 0, data["name"], curses.A_BOLD)
         # add-on
         if "add-on" in data:
-            self.scr.addstr(y, len(data["name"]) + 2, "[" + data["add-on"] + "]")
+            self.pad.addstr(y, len(data["name"]) + 2, "[" + data["add-on"] + "]")
         # type
-        self.scr.addstr(y, self.w2 - len(data["type"]), data["type"])
+        self.pad.addstr(y, self.w2 - len(data["type"]), data["type"])
         y = y + 1
 
         # weight
-        self.scr.addstr(y, int(self.w2 * coef3[0]), "Weight: " + str(data["weight"]))
+        self.pad.addstr(y, int(self.w2 * coef3[0]), "Weight: " + str(data["weight"]))
         # value
-        self.scr.addstr(y, int(self.w2 * coef3[1]), "Value: " + str(data["value"]))
+        self.pad.addstr(y, int(self.w2 * coef3[1]), "Value: " + str(data["value"]))
         # baseid
-        self.scr.addstr(y, int(self.w2 * coef3[2]), "Base ID: " + str(data["baseid"]))
+        self.pad.addstr(y, int(self.w2 * coef3[2]), "Base ID: " + str(data["baseid"]))
         y = y + 2
 
         # effect
-        self.scr.addstr(y, 0, "Effect", curses.A_BOLD)
+        self.pad.addstr(y, 0, "Effect", curses.A_BOLD)
         y = y + 1
         if "inst-effect" in data:
             i = 0
             for e in data["inst-effect"]:
-                self.scr.addstr(y, int(self.w2 * coef2[i % len(coef2)]), "+{} {}".format(data["inst-effect"][e], e))
+                self.pad.addstr(y, int(self.w2 * coef2[i % len(coef2)]), "+{} {}".format(data["inst-effect"][e], e))
                 i = i + 1
                 if i % 2 == 0:
                     y = y + 1
@@ -371,39 +382,40 @@ class Pipboy:
         if "cont-effect" in data:
             for e in data["cont-effect"]:
                 if "effect" in e:
-                    self.scr.addstr(y, int(self.w2 * coef2[0]), "{} for {}s".format(e["effect"], e["second"]))
+                    self.pad.addstr(y, int(self.w2 * coef2[0]), "{} for {}s".format(e["effect"], e["second"]))
                 else:
                     eName, eValue = "", ""
                     for e0 in e:
                         if e0 != "second":
                             eName = e0
                             eValue = e[e0]
-                    self.scr.addstr(y, int(self.w2 * coef2[0]), "+{} {} for {}s".format(eValue, eName, e["second"]))
+                    self.pad.addstr(y, int(self.w2 * coef2[0]), "+{} {} for {}s".format(eValue, eName, e["second"]))
                 y = y + 1
-        y = y + 1
 
         # crafting
         if "crafting" in data:
-            self.scr.addstr(y, 0, "Crafting", curses.A_BOLD)
+            y = y + 1
+            self.pad.addstr(y, 0, "Crafting", curses.A_BOLD)
             crafting = data["crafting"]
             if "XP" in crafting:
-                self.scr.addstr(y, 10, "+ " + str(crafting["XP"]) + " XP")
-            self.scr.addstr(y, self.w2 - len(crafting["requirements"]), crafting["requirements"], curses.A_UNDERLINE)
+                self.pad.addstr(y, 10, "+ " + str(crafting["XP"]) + " XP")
+            self.pad.addstr(y, self.w2 - len(crafting["requirements"]), crafting["requirements"], curses.A_UNDERLINE)
             s = self.buildCraftingString(data["name"], crafting)
             y = y + 1
-            self.scr.addstr(y, int(self.w2 * coef3[0]), s)
-            y = y + 2 + int(len(s) / self.w2)
+            self.pad.addstr(y, int(self.w2 * coef3[0]), s)
+            y = y + 1 + int(len(s) / self.w2)
 
-        # as one component
+        # as a component
         # TODO: navigate from here
-        # TODO: too much line
         if "component-of" in data:
-            self.scr.addstr(y, 0, "Component Of", curses.A_BOLD)
+            y += 1
+            self.pad.addstr(y, 0, "Component Of", curses.A_BOLD)
             y = y + 1
             for comp in data["component-of"]:
-                self.scr.addstr(y, int(self.w2 * coef2[0]), comp)
+                self.pad.addstr(y, int(self.w2 * coef2[0]), comp)
                 y = y + 1
-        self.scr.refresh()
+
+        return y
 
     def buildCraftingString(self, name, crafting):
         s = name + "(" + str(crafting["produces"]) + "):   "
@@ -414,16 +426,20 @@ class Pipboy:
         return s
 
     def showBackground(self):
+        """ wipe out current screen and show default background """
         self.stdscr.clear()
+        self.showMenu(self.defaultMenuKey)
         self.showBorder()
-        self.showMenu()
         self.showTitle()
+        self.showFakeTerminal()
+        self.stdscr.refresh()
 
     def showBorder(self):
-        xBegin = self.marginLeft
-        xEnd = self.w0 - 1 - self.marginRight
-        yBegin = self.marginTop
-        yEnd = self.h0 - 1 - self.menuLineCount - self.marginBottom
+        """ after this method, we get (w1, h1) """
+        xBegin = self.borderMargin[2]
+        xEnd = self.w0 - 1 - self.borderMargin[3]
+        yBegin = self.borderMargin[0]
+        yEnd = self.h0 - 1 - 1 - self.menuKeyLineCount - self.borderMargin[1]
         self.stdscr.addch(yBegin, xBegin, '+', curses.A_BOLD)
         self.stdscr.addch(yBegin, xEnd, '+', curses.A_BOLD)
         self.stdscr.addch(yEnd, xBegin, '+', curses.A_BOLD)
@@ -437,30 +453,43 @@ class Pipboy:
         self.w1 = xEnd - xBegin + 1
         self.h1 = yEnd - yBegin + 1
 
-    def showMenu(self):
-        menuKey = [ ( "WASD", "Navigate" ), ( "E", "OK" ), ( "Tab", "Cancel" ) ]
-        menuKeyLength = 0
-        for ( k, v ) in menuKey:
-            menuKeyLength += len(k) + len(self.menuKeyIntraSeparator) + len(v)
-        menuKeyLength += (len(menuKey) - 1) * len(self.menuKeyInterSeparator)
-        # TODO: make sure terminal width is bigger than menuKeyLength
-        x = int((self.w0 - menuKeyLength) / 2)
-        y = self.h0 - self.menuLineCount
-        #self.stdscr.addstr(y, x, menu1)
-        for ( k, v ) in menuKey:
-            self.stdscr.addstr(y, x, k + self.menuKeyIntraSeparator + v + self.menuKeyInterSeparator, curses.A_BOLD)
-            x += len(k) + len(self.menuKeyIntraSeparator) + len(v) + len(self.menuKeyInterSeparator)
+    def getMenuKeyLength(self, keys):
+        length = 0
+        for (key, intro) in keys:
+            length += len(key) + len(self.menuKeySeparator[0]) + len(intro)
+        length += (len(keys) - 1) * len(self.menuKeySeparator[1])
+        return length
+
+    def showMenuKeyMiddleAlign(self, keys, y):
+        keyLength = self.getMenuKeyLength(keys)
+        if self.w0 < keyLength:
+            self.showFatalError("DEBUG: too many menu keys in one line!!")
+        x = int((self.w0 - keyLength) / 2)
+        for (key, intro) in keys:
+            self.stdscr.addstr(y, x, key + self.menuKeySeparator[0] + intro + self.menuKeySeparator[1], curses.A_BOLD)
+            x += len(key) + len(self.menuKeySeparator[0]) + len(intro) + len(self.menuKeySeparator[1])
+
+    def showMenu(self, keyLine1 = None, keyLine2 = None):
+        if keyLine1 is not None:
+            self.showMenuKeyMiddleAlign(keyLine1, self.h0 - 1 - self.menuKeyLineCount)
+        if keyLine2 is not None:
+            self.showMenuKeyMiddleAlign(keyLine2, self.h0 - 1 - self.menuKeyLineCount + 1)
 
     def showTitle(self):
-        title = "RobCo Personal Information Processor (Version 1.0.0)"
+        title = "RobCo Personal Information Processor (Version " + self.version + ")"
         author = "Powered by Joseph"
-        length = self.w0 - (self.marginLeft + 1 + self.paddingLeft) - (self.marginRight + 1 + self.paddingRight)
-        x1 = self.marginLeft + 1 + self.paddingLeft + int((length - len(title)) / 2)
-        x2 = self.marginLeft + 1 + self.paddingLeft + int((length - len(author)) / 2)
-        y = self.marginTop + 1 + self.paddingTop
+        length = self.w0 - (self.borderMargin[2] + 1) - (self.borderMargin[3] + 1)
+        x1 = self.borderMargin[2] + 1 + int((length - len(title)) / 2)
+        x2 = self.borderMargin[2] + 1 + int((length - len(author)) / 2)
+        y = self.borderMargin[0] + 1
         self.stdscr.addstr(y, x1, title)
         self.stdscr.addstr(y + 1, x2, author)
-        self.stdscr.addstr(y + self.titleLineCount - 1, self.marginLeft + 1 + self.paddingLeft, "-" * length, curses.A_BOLD)
+        self.stdscr.addstr(y + self.titleLineCount + 1, self.borderMargin[2] + 1, "=" * length, curses.A_BOLD)
+
+    def showFakeTerminal(self):
+        x = self.borderMargin[2] + 1
+        y = self.h0 - 1 - self.menuKeyLineCount - self.borderMargin[1] - 1 - 1
+        self.stdscr.addstr(y, x, " > ", curses.A_BOLD)
 
     def showDebugInfo(self, s):
         if self.debug:
@@ -468,11 +497,13 @@ class Pipboy:
             self.stdscr.addstr(self.h0 - 1, 0, s, curses.color_pair(2))
 
 def resizeToStandard(stdscr):
-    print("\x1b[8;24;80t")
-    stdscr.getkey()
+    h, w = stdscr.getmaxyx()
+    if h < 24 or w < 80:
+        print("\x1b[8;24;80t")
+        stdscr.getkey()
 
 def main(stdscr):
-    #resizeToStandard(stdscr)
+    resizeToStandard(stdscr)
 
     # initialize environment
     curses.curs_set(False)
@@ -481,9 +512,7 @@ def main(stdscr):
 
     # start Pip-Boy
     pi = Pipboy(stdscr)
-    # TODO: may add parameters here
-    if pi.init:
-        pi.start()
+    pi.start()
 
 if __name__ == "__main__":
     curses.wrapper(main)
