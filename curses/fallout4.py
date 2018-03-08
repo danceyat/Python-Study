@@ -270,6 +270,7 @@ class Pipboy:
                     self.lastWinBegin = winBegin
                     self.lastWinEnd = winEnd
                     handler = self.handleViewItemPage
+                    self.viewItemPageFather = self.handleBrowsePage
                     break
             elif c == 9:
                 self.lastSelect = -1
@@ -291,7 +292,7 @@ class Pipboy:
                 elif select < len(entries) - 1:
                     select = select + 1
                     winBegin = winBegin + 1
-                    winEnd = winEnd  + 1
+                    winEnd = winEnd + 1
                     self.browsePageShowEntry(entries, select, winBegin, winEnd)
             else:
                 pass
@@ -315,7 +316,100 @@ class Pipboy:
     def handleQueryPage(self):
         handler = None
 
+        # prepare data
+        e = []
+        for item in self.data:
+            e.append(item["name"].lower())
+
+        cache = []
+        cache.append(("", e))
+
+        select = 0
+        winBegin, winEnd = 0, min(len(e), self.h2)
+
+        # show page
+        queryKey1 = [ ("Arrow Key", "Navigate"), ("Enter", "Select"), ("Tab", "Exit") ]
+        queryKey2 = [ ("[A-Za-z']", "Enter item name") ]
+        self.showMenu(queryKey1, queryKey2)
+        self.browsePageShowEntry(e, select, winBegin, winEnd)
+
+        # handle key
+        while (1):
+            c = self.stdscr.getch()
+            if (c > 64 and c < 91) or (c > 96 and c < 123) or (c == 39) or (c == 32):
+                if c > 64 and c < 91:
+                    c -= 32
+                query = cache[-1][0] + chr(c)
+                entries = []
+                for e in cache[-1][1]:
+                    if query in e:
+                        entries.append(e)
+                cache.append((query, entries))
+
+                select = 0
+                winBegin, winEnd = 0, min(len(cache[-1][1]), self.h2)
+                self.queryPageShowEntry(cache[-1][0], cache[-1][1], select, winBegin, winEnd)
+                self.showFakeTerminal(cache[-1][0])
+            elif c == 263:
+                if len(cache) > 1:
+                    cache = cache[:-1]
+                    select = 0
+                    winBegin, winEnd = 0, min(len(cache[-1][1]), self.h2)
+                    self.queryPageShowEntry(cache[-1][0], cache[-1][1], select, winBegin, winEnd)
+                    self.showFakeTerminal(cache[-1][0])
+            elif c == 259:
+                if select > winBegin:
+                    select -= 1
+                    self.queryPageShowEntry(cache[-1][0], cache[-1][1], select, winBegin, winEnd)
+                elif select > 0:
+                    select -= 1
+                    winBegin -= 1
+                    winEnd -= 1
+                    self.queryPageShowEntry(cache[-1][0], cache[-1][1], select, winBegin, winEnd)
+            elif c == 258:
+                if select < winEnd - 1:
+                    select += 1
+                    self.queryPageShowEntry(cache[-1][0], cache[-1][1], select, winBegin, winEnd)
+                elif select < len(cache[-1][1]) - 1:
+                    select += 1
+                    winBegin += 1
+                    winEnd += 1
+                    self.queryPageShowEntry(cache[-1][0], cache[-1][1], select, winBegin, winEnd)
+            elif c == 9:
+                handler = self.handleMenuPage
+                self.showFakeTerminal()
+                self.showMenu(self.defaultMenuKey)
+                self.lastSelect = -1
+                break
+            elif c == 10:
+                for i in range(len(cache[0][1])):
+                    if cache[0][1][i] == cache[-1][1][select]:
+                        self.lastSelect = i
+                        break
+                handler = self.handleViewItemPage
+                self.viewItemPageFather = self.handleQueryPage
+                self.showFakeTerminal()
+                self.showMenu(self.defaultMenuKey)
+                break
+            else:
+                self.showDebugInfo(str(c))
+
         return handler
+
+    def queryPageShowEntry(self, query, entries, select, begin, end):
+        self.scr.clear()
+        for i in range(end - begin):
+            entry = entries[begin + i]
+            index = entry.find(query)
+            if i + begin == select:
+                self.scr.addstr(i, 0, entry[0:index], curses.A_REVERSE)
+                self.scr.addstr(i, index, query, curses.A_REVERSE | curses.A_BOLD)
+                self.scr.addstr(i, index + len(query), entry[index+len(query):len(entry)], curses.A_REVERSE)
+            else:
+                self.scr.addstr(i, 0, entry[0:index])
+                self.scr.addstr(i, index, query, curses.A_BOLD)
+                self.scr.addstr(i, index + len(query), entry[index+len(query):len(entry)])
+        self.scr.refresh()
 
     def handleViewItemPage(self):
         handler = None
@@ -329,7 +423,7 @@ class Pipboy:
         while (1):
             c = self.stdscr.getch()
             if c == 9 or c == 69 or c == 101:
-                handler = self.handleBrowsePage
+                handler = self.viewItemPageFather
                 break
             elif c == 87 or c == 119:
                 if pos > 0:
@@ -470,6 +564,8 @@ class Pipboy:
             x += len(key) + len(self.menuKeySeparator[0]) + len(intro) + len(self.menuKeySeparator[1])
 
     def showMenu(self, keyLine1 = None, keyLine2 = None):
+        self.stdscr.addstr(self.h0 - 1 - self.menuKeyLineCount, 0, " " * self.w0)
+        self.stdscr.addstr(self.h0 - 1 - self.menuKeyLineCount + 1, 0, " " * self.w0)
         if keyLine1 is not None:
             self.showMenuKeyMiddleAlign(keyLine1, self.h0 - 1 - self.menuKeyLineCount)
         if keyLine2 is not None:
@@ -486,10 +582,13 @@ class Pipboy:
         self.stdscr.addstr(y + 1, x2, author)
         self.stdscr.addstr(y + self.titleLineCount + 1, self.borderMargin[2] + 1, "=" * length, curses.A_BOLD)
 
-    def showFakeTerminal(self):
+    def showFakeTerminal(self, text = ""):
         x = self.borderMargin[2] + 1
         y = self.h0 - 1 - self.menuKeyLineCount - self.borderMargin[1] - 1 - 1
+        length = self.w1 - 2
+        self.stdscr.addstr(y, x, " " * length)
         self.stdscr.addstr(y, x, " > ", curses.A_BOLD)
+        self.stdscr.addstr(y, x + 3, text + "_")
 
     def showDebugInfo(self, s):
         if self.debug:
